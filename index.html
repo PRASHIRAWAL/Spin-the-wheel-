@@ -213,9 +213,11 @@
         };
         
         const drawWheel = () => {
-            const numOptions = state.availableOptions.length;
+            const numOptions = 20; // Always draw 20 segments
+            const arcSize = (2 * Math.PI) / numOptions;
             ctx.clearRect(0, 0, 600, 600);
-            if (numOptions === 0) {
+
+            if (state.availableOptions.length === 0) {
                 ctx.beginPath(); ctx.arc(300, 300, 290, 0, Math.PI * 2);
                 ctx.fillStyle = '#334155'; ctx.fill();
                 ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 36px Poppins';
@@ -223,28 +225,44 @@
                 ctx.fillText('All Done!', 300, 300);
                 return;
             }
-            const arcSize = (2 * Math.PI) / numOptions;
+
             ctx.save();
             ctx.translate(300, 300);
             ctx.rotate(state.currentRotation);
-            state.availableOptions.forEach((option, i) => {
+
+            for (let i = 0; i < numOptions; i++) {
+                const questionNumber = i + 1;
                 const angle = i * arcSize;
-                ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, 290, angle, angle + arcSize); ctx.closePath();
-                ctx.fillStyle = colors[(option - 1) % colors.length]; ctx.fill();
+                const isAvailable = state.availableOptions.includes(questionNumber);
+
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.arc(0, 0, 290, angle, angle + arcSize);
+                ctx.closePath();
+                // Use a gray color for unavailable segments, otherwise use the standard color
+                ctx.fillStyle = isAvailable ? colors[(questionNumber - 1) % colors.length] : '#334155';
+                ctx.fill();
+
                 ctx.save();
-                ctx.fillStyle = 'white'; ctx.font = 'bold 28px Poppins'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillStyle = isAvailable ? 'white' : '#64748b'; // Muted text for unavailable
+                ctx.font = 'bold 28px Poppins';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
                 const textAngle = angle + arcSize / 2;
-                ctx.rotate(textAngle); ctx.fillText(option, 220, 0);
+                ctx.rotate(textAngle);
+                ctx.fillText(questionNumber, 220, 0);
                 ctx.restore();
-            });
+            }
             ctx.restore();
+
+            // Draw the center spin button
             ctx.beginPath(); ctx.arc(300, 300, 60, 0, Math.PI * 2, false);
             ctx.fillStyle = '#4f46e5'; ctx.fill();
             ctx.strokeStyle = '#818cf8'; ctx.lineWidth = 5; ctx.stroke();
             ctx.fillStyle = 'white'; ctx.font = 'bold 24px Poppins'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
             ctx.fillText('SPIN', 300, 300);
         };
-
+        
         const spin = async () => {
             if (state.isSpinning || state.availableOptions.length === 0) return;
             state.isSpinning = true;
@@ -268,25 +286,25 @@
         };
 
        const onSpinEnd = () => {
-            const numOptions = state.availableOptions.length;
-            const arcSize = (2 * Math.PI) / numOptions;
-            
-            // Normalize the final angle to be between 0 and 2*PI
+            const numSegments = 20; // We are always calculating based on 20 segments
+            const arcSize = (2 * Math.PI) / numSegments;
             const finalAngle = state.currentRotation % (2 * Math.PI);
-
-            // Calculate the angle that is directly under the pointer
-            // The pointer is at the top (0), so we calculate the inverse angle of the wheel's rotation
             const pointerAngle = (2 * Math.PI - finalAngle) % (2 * Math.PI);
-            
-            // Determine the index of the winning segment by dividing the pointer's angle by the size of each arc
-            const winningIndex = Math.floor(pointerAngle / arcSize);
-            state.lastWinner = state.availableOptions[winningIndex];
-            
-            elements.pointer.classList.add('bounce');
-            setTimeout(() => elements.pointer.classList.remove('bounce'), 500);
-            showQuestion(state.lastWinner);
-        };
+            const winningSegmentIndex = Math.floor(pointerAngle / arcSize);
+            const winnerNumber = winningSegmentIndex + 1;
 
+            // Check if the winner is an available question
+            if (state.availableOptions.includes(winnerNumber)) {
+                state.lastWinner = winnerNumber;
+                elements.pointer.classList.add('bounce');
+                setTimeout(() => elements.pointer.classList.remove('bounce'), 500);
+                showQuestion(state.lastWinner);
+            } else {
+                // Landed on a completed question, spin again!
+                spin();
+            }
+        };
+        
         // === MODIFIED SHOWQUESTION FUNCTION ===
         const showQuestion = (number) => {
             const question = questions.find(q => q.id === number);
@@ -419,5 +437,6 @@
     </script>
 </body>
 </html>
+
 
 
