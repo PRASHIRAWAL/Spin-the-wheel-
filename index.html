@@ -267,11 +267,19 @@
             requestAnimationFrame(animate);
         };
 
-        const onSpinEnd = () => {
+       const onSpinEnd = () => {
             const numOptions = state.availableOptions.length;
             const arcSize = (2 * Math.PI) / numOptions;
+            
+            // Normalize the final angle to be between 0 and 2*PI
             const finalAngle = state.currentRotation % (2 * Math.PI);
-            const winningIndex = Math.floor((numOptions * (2 * Math.PI - finalAngle)) / (2 * Math.PI)) % numOptions;
+
+            // Calculate the angle that is directly under the pointer
+            // The pointer is at the top (0), so we calculate the inverse angle of the wheel's rotation
+            const pointerAngle = (2 * Math.PI - finalAngle) % (2 * Math.PI);
+            
+            // Determine the index of the winning segment by dividing the pointer's angle by the size of each arc
+            const winningIndex = Math.floor(pointerAngle / arcSize);
             state.lastWinner = state.availableOptions[winningIndex];
             
             elements.pointer.classList.add('bounce');
@@ -411,4 +419,5 @@
     </script>
 </body>
 </html>
+
 
