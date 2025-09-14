@@ -12,9 +12,6 @@
             --bg-color: #0f172a; /* slate-900 */
             --primary-color: #4f46e5; /* indigo-600 */
             --secondary-color: #818cf8; /* indigo-400 */
-            --text-color: #cbd5e1; /* slate-300 */
-            --text-muted-color: #64748b; /* slate-500 */
-            --success-color: #22c55e; /* green-500 */
         }
         body {
             font-family: 'Poppins', sans-serif;
@@ -45,13 +42,8 @@
         #completed-questions-list::-webkit-scrollbar { width: 8px; }
         #completed-questions-list::-webkit-scrollbar-track { background: #1e293b; }
         #completed-questions-list::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 4px; }
-        #completed-questions-list::-webkit-scrollbar-thumb:hover { background: var(--secondary-color); }
-
-        /* --- New Animations --- */
         .fade-in { animation: fadeIn 0.5s ease-out forwards; }
         .fade-out { animation: fadeOut 0.5s ease-in forwards; }
-        .pulse { animation: pulse 0.5s ease-in-out; }
-        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -64,24 +56,17 @@
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(-10px); }
         }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
     </style>
 </head>
-<body class="text-slate-200 flex items-center justify-center min-h-screen p-4 transition-colors duration-500 relative">
+<body class="text-slate-200 flex items-center justify-center min-h-screen p-4">
 
     <header class="absolute top-0 left-0 p-4 sm:p-6 z-20">
         <img src="logo.png" alt="Cesa Logo" class="h-12 sm:h-18 w-auto">
     </header>
 
     <div id="start-screen" class="w-full max-w-2xl mx-auto text-center fade-in">
-        <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-            Bytes of Fortune
-        </h1>
+        <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Bytes of Fortune</h1>
         <p class="text-xl text-slate-400 mb-6">You have <span class="font-bold text-indigo-400">15 minutes</span> to solve as many questions as you can.</p>
-        
         <div class="my-8 max-w-sm mx-auto bg-slate-800/50 p-4 rounded-lg ring-1 ring-slate-700/50">
             <h3 class="text-lg font-semibold text-slate-300 mb-3 text-center">Point System</h3>
             <div class="text-left space-y-2 text-slate-300">
@@ -91,10 +76,7 @@
             </div>
         </div>
         <p class="text-slate-400 italic mb-8">Your fate and points depend on the spin!</p>
-
-        <button id="start-challenge-button" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 transition-all duration-300 transform hover:scale-105 text-lg">
-            START CHALLENGE
-        </button>
+        <button id="start-challenge-button" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 transition-all duration-300 transform hover:scale-105 text-lg">START CHALLENGE</button>
     </div>
 
     <main id="game-screen" class="hidden w-full max-w-6xl mx-auto">
@@ -105,17 +87,17 @@
             </div>
             <div class="flex flex-col space-y-4 h-full">
                 <div class="flex justify-between items-center px-4">
-                    <div class="text-left">
+                    <div>
                         <p class="text-sm text-slate-400">Time Remaining</p>
-                        <p id="timer-display" class="text-2xl font-bold text-indigo-400 transition-transform duration-300">15:00</p>
+                        <p id="timer-display" class="text-2xl font-bold text-indigo-400">15:00</p>
                     </div>
                     <div class="text-right">
                         <p class="text-sm text-slate-400">Total Score</p>
-                        <p id="score-display" class="text-2xl font-bold text-green-400 transition-transform duration-300">0</p>
+                        <p id="score-display" class="text-2xl font-bold text-green-400">0</p>
                     </div>
                 </div>
                 <div class="flex-grow flex flex-col items-center justify-center min-h-[200px]">
-                     <div id="question-display" class="hidden w-full bg-slate-800 p-6 rounded-lg shadow-lg flex flex-col items-center justify-center ring-1 ring-slate-700">
+                    <div id="question-display" class="hidden w-full bg-slate-800 p-6 rounded-lg shadow-lg flex flex-col items-center justify-center ring-1 ring-slate-700">
                         <div class="flex justify-between items-center w-full mb-3">
                             <p class="text-lg font-semibold text-slate-400" id="question-number">Question X</p>
                             <span id="question-difficulty-badge" class="px-3 py-1 text-sm font-bold rounded-full">Difficulty</span>
@@ -123,7 +105,6 @@
                         <p class="text-xl text-center text-slate-200 mb-4" id="question-text">This is the question.</p>
                         <p class="text-indigo-400 font-bold" id="question-points">Points: Y</p>
                     </div>
-
                     <div id="completion-message" class="hidden w-full bg-green-900/50 border border-green-500 text-green-300 px-4 py-3 rounded-lg text-center" role="alert">
                         <strong class="font-bold">Congratulations!</strong><br>
                         <span class="block sm:inline">You've answered all the questions.</span>
@@ -132,17 +113,14 @@
                         <strong class="font-bold">Time's Up!</strong><br>
                         <span class="block sm:inline" id="final-score-text">You solved X questions.</span>
                     </div>
-                     <p id="pre-spin-message" class="text-slate-400 text-lg">Click the center of the wheel or press <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Space</kbd> to spin!</p>
+                    <p id="pre-spin-message" class="text-slate-400 text-lg">Click the center of the wheel or press <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Space</kbd> to spin!</p>
                 </div>
-                <div id="button-container" class="text-center h-14">
-                    <button id="submit-button" class="hidden bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500 transition-all duration-300 transform hover:scale-105">
-                        MARK AS COMPLETE
-                    </button>
+                <div class="text-center h-14">
+                    <button id="submit-button" class="hidden bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500 transition-all duration-300 transform hover:scale-105">MARK AS COMPLETE</button>
                 </div>
                 <div id="completed-questions-container" class="hidden w-full bg-slate-800/50 p-4 rounded-lg ring-1 ring-slate-700/50">
                     <h3 class="text-lg font-semibold text-slate-300 mb-3 text-center">Completed Questions</h3>
-                    <div id="completed-questions-list" class="flex flex-wrap gap-2 justify-center max-h-32 overflow-y-auto p-1">
-                        </div>
+                    <div id="completed-questions-list" class="flex flex-wrap gap-2 justify-center max-h-32 overflow-y-auto p-1"></div>
                 </div>
             </div>
         </div>
@@ -174,28 +152,7 @@
 
         const ctx = elements.canvas.getContext('2d');
 
-        const questions = [
-            { id: 1,  text: "Write a function that takes a string as input and returns it reversed.", difficulty: 'Easy', points: 50 },
-            { id: 2,  text: "Create a function that returns the sum of all numbers in a given array.", difficulty: 'Easy', points: 50 },
-            { id: 3,  text: "Write a function `isEven(num)` that returns true if a number is even and false otherwise.", difficulty: 'Easy', points: 50 },
-            { id: 4,  text: "Implement a function `findMax(arr)` that returns the largest number in an array.", difficulty: 'Easy', points: 50 },
-            { id: 5,  text: "Using a `for` loop, write a function to print all numbers from 1 to 10.", difficulty: 'Easy', points: 50 },
-            { id: 6,  text: "Write a function `countVowels(str)` that counts the number of vowels in a string.", difficulty: 'Medium', points: 75 },
-            { id: 7,  text: "Create a function that takes a name and returns a greeting string 'Hello, [name]!'.", difficulty: 'Easy', points: 50 },
-            { id: 8,  text: "Write a function `isPalindrome(str)` to check if a given string is a palindrome.", difficulty: 'Medium', points: 75 },
-            { id: 9,  text: "Implement `fizzBuzz(n)`. Print numbers from 1 to n, but for multiples of 3 print 'Fizz', for 5 print 'Buzz', and for both print 'FizzBuzz'.", difficulty: 'Medium', points: 75 },
-            { id: 10, text: "Write a function `removeDuplicates(arr)` that removes duplicate elements from an array.", difficulty: 'Medium', points: 75 },
-            { id: 11, text: "Implement a binary search function for a sorted array of numbers.", difficulty: 'Hard', points: 100 },
-            { id: 12, text: "Write a function to find the factorial of a number using recursion.", difficulty: 'Medium', points: 75 },
-            { id: 13, text: "Create a function `areAnagrams(str1, str2)` to check if two strings are anagrams.", difficulty: 'Hard', points: 100 },
-            { id: 14, text: "Write a function `findMissingNumber(arr)` that finds a missing number in an integer array from 1 to 10.", difficulty: 'Medium', points: 75 },
-            { id: 15, text: "Create a JavaScript closure that acts as a counter with an increment function.", difficulty: 'Hard', points: 100 },
-            { id: 16, text: "Implement a function `twoSum(arr, target)` that finds two numbers in an array that add up to a specific target.", difficulty: 'Hard', points: 100 },
-            { id: 17, text: "Given an array of numbers, write a function to find the second largest number.", difficulty: 'Medium', points: 75 },
-            { id: 18, text: "Write a function to merge two sorted arrays into a single sorted array.", difficulty: 'Hard', points: 100 },
-            { id: 19, text: "Implement a function to find the Nth number in the Fibonacci sequence efficiently.", difficulty: 'Hard', points: 100 },
-            { id: 20, text: "Write a function `rotateArray(arr, k)` that rotates an array to the right by `k` steps.", difficulty: 'Hard', points: 100 }
-        ];
+        const questions = [ { id: 1,  text: "Write a function that takes a string as input and returns it reversed.", difficulty: 'Easy', points: 50 }, { id: 2,  text: "Create a function that returns the sum of all numbers in a given array.", difficulty: 'Easy', points: 50 }, { id: 3,  text: "Write a function `isEven(num)` that returns true if a number is even and false otherwise.", difficulty: 'Easy', points: 50 }, { id: 4,  text: "Implement a function `findMax(arr)` that returns the largest number in an array.", difficulty: 'Easy', points: 50 }, { id: 5,  text: "Using a `for` loop, write a function to print all numbers from 1 to 10.", difficulty: 'Easy', points: 50 }, { id: 6,  text: "Write a function `countVowels(str)` that counts the number of vowels in a string.", difficulty: 'Medium', points: 75 }, { id: 7,  text: "Create a function that takes a name and returns a greeting string 'Hello, [name]!'.", difficulty: 'Easy', points: 50 }, { id: 8,  text: "Write a function `isPalindrome(str)` to check if a given string is a palindrome.", difficulty: 'Medium', points: 75 }, { id: 9,  text: "Implement `fizzBuzz(n)`. Print numbers from 1 to n, but for multiples of 3 print 'Fizz', for 5 print 'Buzz', and for both print 'FizzBuzz'.", difficulty: 'Medium', points: 75 }, { id: 10, text: "Write a function `removeDuplicates(arr)` that removes duplicate elements from an array.", difficulty: 'Medium', points: 75 }, { id: 11, text: "Implement a binary search function for a sorted array of numbers.", difficulty: 'Hard', points: 100 }, { id: 12, text: "Write a function to find the factorial of a number using recursion.", difficulty: 'Medium', points: 75 }, { id: 13, text: "Create a function `areAnagrams(str1, str2)` to check if two strings are anagrams.", difficulty: 'Hard', points: 100 }, { id: 14, text: "Write a function `findMissingNumber(arr)` that finds a missing number in an integer array from 1 to 10.", difficulty: 'Medium', points: 75 }, { id: 15, text: "Create a JavaScript closure that acts as a counter with an increment function.", difficulty: 'Hard', points: 100 }, { id: 16, text: "Implement a function `twoSum(arr, target)` that finds two numbers in an array that add up to a specific target.", difficulty: 'Hard', points: 100 }, { id: 17, text: "Given an array of numbers, write a function to find the second largest number.", difficulty: 'Medium', points: 75 }, { id: 18, text: "Write a function to merge two sorted arrays into a single sorted array.", difficulty: 'Hard', points: 100 }, { id: 19, text: "Implement a function to find the Nth number in the Fibonacci sequence efficiently.", difficulty: 'Hard', points: 100 }, { id: 20, text: "Write a function `rotateArray(arr, k)` that rotates an array to the right by `k` steps.", difficulty: 'Hard', points: 100 } ];
         const colors = [ '#581c87', '#6b21a8', '#7e22ce', '#9333ea', '#a855f7', '#312e81', '#3730a3', '#4338ca', '#4f46e5', '#6366f1', '#1e3a8a', '#1e40af', '#1d4ed8', '#2563eb', '#3b82f6', '#581c87', '#7e22ce', ' #3730a3', '#4f46e5', '#1e40af' ];
         
         let state = {
@@ -241,7 +198,7 @@
                 ctx.fill();
 
                 ctx.save();
-                ctx.fillStyle = isAvailable ? 'white' : '#64748b'; // Muted text for completed questions
+                ctx.fillStyle = isAvailable ? 'white' : '#64748b';
                 ctx.font = 'bold 28px Poppins';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
@@ -252,7 +209,6 @@
             }
             ctx.restore();
 
-            // Draw the center spin button
             ctx.beginPath(); ctx.arc(300, 300, 60, 0, Math.PI * 2, false);
             ctx.fillStyle = '#4f46e5'; ctx.fill();
             ctx.strokeStyle = '#818cf8'; ctx.lineWidth = 5; ctx.stroke();
@@ -265,8 +221,15 @@
             state.isSpinning = true;
             elements.preSpinMessage.classList.add('hidden');
             
+            await Tone.start();
+            const tickSynth = new Tone.MembraneSynth().toDestination();
+            const loop = new Tone.Loop(time => {
+                tickSynth.triggerAttackRelease("C1", "8n", time);
+            }, "16n").start(0);
+            Tone.Transport.start();
+
             const spinAngle = Math.random() * (Math.PI * 12) + (Math.PI * 8);
-            const spinDuration = 3000;
+            const spinDuration = 4000;
             const startRotation = state.currentRotation;
             const start = performance.now();
 
@@ -276,14 +239,20 @@
                 const easeOut = 1 - Math.pow(1 - progress, 4);
                 state.currentRotation = startRotation + spinAngle * easeOut;
                 drawWheel();
-                if (progress < 1) requestAnimationFrame(animate);
-                else onSpinEnd();
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    loop.stop();
+                    Tone.Transport.stop();
+                    Tone.Transport.cancel();
+                    onSpinEnd();
+                }
             };
             requestAnimationFrame(animate);
         };
 
         const onSpinEnd = () => {
-            const numSegments = 20; // Calculation is always based on 20 segments
+            const numSegments = 20;
             const arcSize = (2 * Math.PI) / numSegments;
             const finalAngle = state.currentRotation % (2 * Math.PI);
             const pointerAngle = (2 * Math.PI - finalAngle) % (2 * Math.PI);
@@ -291,14 +260,16 @@
             const winnerNumber = winningSegmentIndex + 1;
 
             if (state.availableOptions.includes(winnerNumber)) {
-                // Landed on a valid, available question
                 state.lastWinner = winnerNumber;
+                
+                const dingSynth = new Tone.MetalSynth({ frequency: 250, envelope: { attack: 0.001, decay: 0.4, release: 0.2 }, harmonicity: 5.1, modulationIndex: 32, resonance: 4000, octaves: 1.5, }).toDestination();
+                dingSynth.triggerAttackRelease("C4", "8n");
+
                 elements.pointer.classList.add('bounce');
                 setTimeout(() => elements.pointer.classList.remove('bounce'), 500);
                 showQuestion(state.lastWinner);
-                state.isSpinning = false; // CRITICAL FIX: Allow the user to spin again
+                state.isSpinning = false;
             } else {
-                // Landed on a completed question, so spin again automatically
                 spin();
             }
         };
@@ -329,16 +300,14 @@
 
         const updateUI = () => {
             elements.scoreDisplay.textContent = state.totalScore;
-            elements.scoreDisplay.classList.add('pulse');
-            setTimeout(() => elements.scoreDisplay.classList.remove('pulse'), 500);
-
+            
             elements.completedQuestionsList.innerHTML = '';
             if(state.completedQuestions.length > 0) {
                 elements.completedQuestionsContainer.classList.remove('hidden');
             }
             state.completedQuestions.sort((a, b) => a.number - b.number).forEach(q => {
                 const item = document.createElement('div');
-                item.className = "bg-slate-700 text-slate-300 font-bold text-sm rounded-md h-10 w-10 flex items-center justify-center ring-1 ring-slate-600 shadow-md transition-transform transform hover:scale-110";
+                item.className = "bg-slate-700 text-slate-300 font-bold text-sm rounded-md h-10 w-10 flex items-center justify-center ring-1 ring-slate-600 shadow-md";
                 item.textContent = q.number;
                 item.title = `Question ${q.number}: ${q.text}`;
                 elements.completedQuestionsList.appendChild(item);
@@ -355,7 +324,7 @@
             state.isSpinning = false;
         };
 
-        elements.startChallengeButton.addEventListener('click', async () => {
+        elements.startChallengeButton.addEventListener('click', () => {
             elements.startScreen.classList.add('fade-out');
             setTimeout(() => {
                 elements.startScreen.classList.add('hidden');
@@ -396,7 +365,7 @@
         });
 
         document.addEventListener('keydown', (e) => {
-            if(elements.gameScreen.classList.contains('hidden')) return;
+            if(elements.gameScreen.classList.contains('hidden') || e.repeat) return;
             if (e.code === 'Space' && !state.isSpinning) {
                 e.preventDefault();
                 spin();
@@ -417,24 +386,8 @@
             if (distance <= 60) spin();
         });
 
-        elements.canvas.addEventListener('mousemove', (event) => {
-            const rect = elements.canvas.getBoundingClientRect();
-            const scaleX = 600 / rect.width;
-            const scaleY = 600 / rect.height;
-            const x = (event.clientX - rect.left) * scaleX;
-            const y = (event.clientY - rect.top) * scaleY;
-            const distance = Math.sqrt(Math.pow(x - 300, 2) + Math.pow(y - 300, 2));
-            elements.canvas.style.cursor = (distance <= 60 && !state.isSpinning && state.availableOptions.length > 0) ? 'pointer' : 'default';
-        });
-
         drawWheel();
     });
     </script>
-    </script>
 </body>
 </html>
-
-
-
-
-
