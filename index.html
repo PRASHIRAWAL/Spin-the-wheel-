@@ -149,6 +149,7 @@
     </main>
 
     <script>
+    <script>
     document.addEventListener('DOMContentLoaded', () => {
         const elements = {
             canvas: document.getElementById('wheelCanvas'),
@@ -174,7 +175,6 @@
 
         const ctx = elements.canvas.getContext('2d');
 
-        // === MODIFIED QUESTIONS ARRAY WITH DIFFICULTY AND POINTS ===
         const questions = [
             { id: 1,  text: "Write a function that takes a string as input and returns it reversed.", difficulty: 'Easy', points: 50 },
             { id: 2,  text: "Create a function that returns the sum of all numbers in a given array.", difficulty: 'Easy', points: 50 },
@@ -199,7 +199,6 @@
         ];
         const colors = [ '#581c87', '#6b21a8', '#7e22ce', '#9333ea', '#a855f7', '#312e81', '#3730a3', '#4338ca', '#4f46e5', '#6366f1', '#1e3a8a', '#1e40af', '#1d4ed8', '#2563eb', '#3b82f6', '#581c87', '#7e22ce', ' #3730a3', '#4f46e5', '#1e40af' ];
         
-        // === MODIFIED STATE ===
         let state = {
             availableOptions: Array.from({ length: 20 }, (_, i) => i + 1),
             completedQuestions: [],
@@ -213,8 +212,8 @@
         };
         
         const drawWheel = () => {
-            const numOptions = 20; // Always draw 20 segments
-            const arcSize = (2 * Math.PI) / numOptions;
+            const numSegments = 20; // Always draw 20 segments for a static layout
+            const arcSize = (2 * Math.PI) / numSegments;
             ctx.clearRect(0, 0, 600, 600);
 
             if (state.availableOptions.length === 0) {
@@ -230,7 +229,7 @@
             ctx.translate(300, 300);
             ctx.rotate(state.currentRotation);
 
-            for (let i = 0; i < numOptions; i++) {
+            for (let i = 0; i < numSegments; i++) {
                 const questionNumber = i + 1;
                 const angle = i * arcSize;
                 const isAvailable = state.availableOptions.includes(questionNumber);
@@ -239,12 +238,11 @@
                 ctx.moveTo(0, 0);
                 ctx.arc(0, 0, 290, angle, angle + arcSize);
                 ctx.closePath();
-                // Use a gray color for unavailable segments, otherwise use the standard color
                 ctx.fillStyle = isAvailable ? colors[(questionNumber - 1) % colors.length] : '#334155';
                 ctx.fill();
 
                 ctx.save();
-                ctx.fillStyle = isAvailable ? 'white' : '#64748b'; // Muted text for unavailable
+                ctx.fillStyle = isAvailable ? 'white' : '#64748b'; // Muted text for completed questions
                 ctx.font = 'bold 28px Poppins';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
@@ -262,7 +260,7 @@
             ctx.fillStyle = 'white'; ctx.font = 'bold 24px Poppins'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
             ctx.fillText('SPIN', 300, 300);
         };
-        
+
         const spin = async () => {
             if (state.isSpinning || state.availableOptions.length === 0) return;
             state.isSpinning = true;
@@ -285,27 +283,27 @@
             requestAnimationFrame(animate);
         };
 
-       const onSpinEnd = () => {
-            const numSegments = 20; // We are always calculating based on 20 segments
+        const onSpinEnd = () => {
+            const numSegments = 20; // Calculation is always based on 20 segments
             const arcSize = (2 * Math.PI) / numSegments;
             const finalAngle = state.currentRotation % (2 * Math.PI);
             const pointerAngle = (2 * Math.PI - finalAngle) % (2 * Math.PI);
             const winningSegmentIndex = Math.floor(pointerAngle / arcSize);
             const winnerNumber = winningSegmentIndex + 1;
 
-            // Check if the winner is an available question
             if (state.availableOptions.includes(winnerNumber)) {
+                // Landed on a valid, available question
                 state.lastWinner = winnerNumber;
                 elements.pointer.classList.add('bounce');
                 setTimeout(() => elements.pointer.classList.remove('bounce'), 500);
                 showQuestion(state.lastWinner);
+                state.isSpinning = false; // CRITICAL FIX: Allow the user to spin again
             } else {
-                // Landed on a completed question, spin again!
+                // Landed on a completed question, so spin again automatically
                 spin();
             }
         };
-        
-        // === MODIFIED SHOWQUESTION FUNCTION ===
+
         const showQuestion = (number) => {
             const question = questions.find(q => q.id === number);
             if (!question) return;
@@ -331,7 +329,7 @@
         };
 
         const updateUI = () => {
-            elements.scoreDisplay.textContent = state.totalScore; // Display total score
+            elements.scoreDisplay.textContent = state.totalScore;
             elements.scoreDisplay.classList.add('pulse');
             setTimeout(() => elements.scoreDisplay.classList.remove('pulse'), 500);
 
@@ -373,15 +371,13 @@
                         clearInterval(state.timerInterval);
                         elements.timesUpMessage.classList.remove('hidden');
                         elements.timesUpMessage.classList.add('fade-in');
-                        // === MODIFIED FINAL SCORE TEXT ===
                         elements.finalScoreText.innerHTML = `You solved ${state.questionsSolved} question${state.questionsSolved !== 1 ? 's' : ''} for a total of <span class="font-bold">${state.totalScore}</span> points.`;
-                        state.isSpinning = true; // Disable further spins
+                        state.isSpinning = true;
                     }
                 }, 1000);
             }, 500);
         });
 
-        // === MODIFIED SUBMIT LOGIC ===
         elements.submitButton.addEventListener('click', () => {
             if (state.lastWinner !== null) {
                 const question = questions.find(q => q.id === state.lastWinner);
@@ -435,8 +431,10 @@
         drawWheel();
     });
     </script>
+    </script>
 </body>
 </html>
+
 
 
 
