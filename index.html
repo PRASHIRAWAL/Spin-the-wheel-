@@ -1,25 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; }
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; }
+</style>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spin the Wheel Challenge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a; /* slate-900 */
-            --primary-color: #4f46e5; /* indigo-600 */
-            --secondary-color: #818cf8; /* indigo-400 */
+            --bg-color: #0c0a1a;
+            --primary-color: #a855f7;
+            --secondary-color: #e879f9;
+            --accent-color: #22d3ee;
+            --text-color: #f5d0fe;
+            --text-muted-color: #c084fc;
+            --success-color: #4ade80;
+            --danger-color: #f87171;
+            --warning-color: #fbbf24; /* yellow-400 */
+            --glow-primary: rgba(168, 85, 247, 0.7);
+            --glow-secondary: rgba(232, 121, 255, 0.8);
+            --glow-accent: rgba(34, 211, 238, 0.7);
         }
         body {
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 20px 20px;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(168, 85, 247, 0.25), transparent),
+                linear-gradient(rgba(12, 10, 26, 0.95), rgba(12, 10, 26, 0.95)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239333ea' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h16v9h1v-9h9v9h1v-9h9v9h1v-9h9v9h1v-9h9v9h1v-9h9v9h1v-9h9v9h1v-9h9v9h1v-9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0h1v5h94V0h1v5h-1v95H6V5zm1 94h92V6H7v93z'/%3E%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-size: auto, 100%, 100px;
+            color: var(--text-color);
         }
+        h1, .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+            text-transform: uppercase;
+            -webkit-font-smoothing: none;
+            image-rendering: -webkit-crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: pixelated;
+        }
+        .text-glow {
+            text-shadow: 0 0 5px var(--glow-secondary), 0 0 10px var(--glow-secondary), 0 0 20px var(--glow-primary);
+        }
+        .pixel-button {
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+            text-shadow: 1px 1px #000;
+            text-transform: uppercase;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            box-shadow: inset -4px -4px 0px 0px #7e22ce, 0px 0px 15px 0px var(--glow-primary);
+            transition: all 0.1s ease-in-out;
+        }
+        .pixel-button:hover {
+            background-color: #9333ea;
+            box-shadow: inset -4px -4px 0px 0px #7e22ce, 0px 0px 25px 0px var(--glow-secondary);
+        }
+        .pixel-button:active {
+            transform: translateY(2px) translateX(2px);
+            box-shadow: inset -2px -2px 0px 0px #7e22ce, 0px 0px 5px 0px var(--glow-primary);
+        }
+        .pixel-button.green {
+            background-color: #16a34a; /* green-600 */
+            box-shadow: inset -4px -4px 0px 0px #15803d, 0px 0px 15px 0px #4ade80;
+        }
+        .pixel-button.green:hover {
+            background-color: #15803d; /* green-700 */
+            box-shadow: inset -4px -4px 0px 0px #15803d, 0px 0px 25px 0px #4ade80;
+        }
+        .pixel-button.green:active {
+            box-shadow: inset -2px -2px 0px 0px #15803d, 0px 0px 5px 0px #4ade80;
+        }
+
         .wheel-pointer {
             position: absolute;
             top: -20px; left: 50%;
@@ -30,6 +88,7 @@
             border-top: 50px solid var(--secondary-color);
             z-index: 10;
             transition: transform 0.3s ease;
+            filter: drop-shadow(0 -5px 10px var(--glow-secondary));
         }
         .wheel-pointer.bounce {
             animation: bounce 0.5s ease-in-out;
@@ -42,8 +101,49 @@
         #completed-questions-list::-webkit-scrollbar { width: 8px; }
         #completed-questions-list::-webkit-scrollbar-track { background: #1e293b; }
         #completed-questions-list::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 4px; }
+        #completed-questions-list::-webkit-scrollbar-thumb:hover { background: var(--secondary-color); }
+
+        .glow-container {
+            background-color: rgba(26, 13, 58, 0.7);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--primary-color);
+            box-shadow: inset 0 0 10px var(--glow-primary), 0 0 15px var(--glow-primary);
+        }
+        kbd {
+            background-color: rgba(26, 13, 58, 0.9);
+            border: 1px solid var(--primary-color);
+            box-shadow: inset 0 0 5px var(--glow-primary);
+            color: var(--text-color);
+            font-family: 'Press Start 2P', cursive;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* --- Badge Styles (FIX) --- */
+        .badge-easy {
+            background-color: rgba(74, 222, 128, 0.15);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+            text-shadow: 0 0 5px rgba(74, 222, 128, 0.7);
+        }
+        .badge-medium {
+            background-color: rgba(251, 191, 36, 0.15);
+            color: var(--warning-color);
+            border: 1px solid var(--warning-color);
+            text-shadow: 0 0 5px rgba(251, 191, 36, 0.7);
+        }
+        .badge-hard {
+            background-color: rgba(248, 113, 113, 0.15);
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+            text-shadow: 0 0 5px rgba(248, 113, 113, 0.7);
+        }
+
+        /* --- Animations --- */
         .fade-in { animation: fadeIn 0.5s ease-out forwards; }
         .fade-out { animation: fadeOut 0.5s ease-in forwards; }
+        .pulse { animation: pulse 0.5s ease-in-out; }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -56,27 +156,57 @@
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(-10px); }
         }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
     </style>
-</head>
-<body class="text-slate-200 flex items-center justify-center min-h-screen p-4">
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.left-0{left:0px}.top-0{top:0px}.z-20{z-index:20}.mx-auto{margin-left:auto;margin-right:auto}.my-4{margin-top:1rem;margin-bottom:1rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-20{margin-top:5rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-12{height:3rem}.h-14{height:3.5rem}.h-full{height:100%}.max-h-32{max-height:8rem}.min-h-screen{min-height:100vh}.min-h-\[200px\]{min-height:200px}.w-auto{width:auto}.w-full{width:100%}.max-w-4xl{max-width:56rem}.max-w-6xl{max-width:72rem}.max-w-sm{max-width:24rem}.flex-grow{flex-grow:1}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-y-auto{overflow-y:auto}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.border{border-width:1px}.border-green-500{--tw-border-opacity:1;border-color:rgb(34 197 94 / var(--tw-border-opacity, 1))}.border-red-500{--tw-border-opacity:1;border-color:rgb(239 68 68 / var(--tw-border-opacity, 1))}.bg-green-900\/50{background-color:rgb(20 83 45 / 0.5)}.bg-red-900\/50{background-color:rgb(127 29 29 / 0.5)}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-indigo-400{--tw-gradient-from:#818cf8 var(--tw-gradient-from-position);--tw-gradient-to:rgb(129 140 248 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-pink-400{--tw-gradient-from:#f472b6 var(--tw-gradient-from-position);--tw-gradient-to:rgb(244 114 182 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-purple-500{--tw-gradient-to:#a855f7 var(--tw-gradient-to-position)}.via-purple-400{--tw-gradient-to:rgb(192 132 252 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #c084fc var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-cyan-400{--tw-gradient-to:#22d3ee var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.p-4{padding:1rem}.p-1{padding:0.25rem}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.text-2xl{font-size:1.5rem;line-height:2rem}.text-5xl{font-size:3rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.italic{font-style:italic}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-purple-300{color:var(--text-muted-color)}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.drop-shadow-lg{--tw-drop-shadow:0 10px 8px rgb(0 0 0 / 0.04), 0 4px 3px rgb(0 0 0 / 0.1);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}@media (min-width: 640px){.sm\:h-14{height:3.5rem}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:p-6{padding:1.5rem}}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style></head>
+<body class="flex items-center justify-center min-h-screen p-4 relative">
 
-    <header class="absolute top-0 left-0 p-4 sm:p-6 z-20">
-        <img src="logo.png" alt="Cesa Logo" class="h-12 sm:h-18 w-auto">
+    <header class="absolute top-0 left-0 p-4 sm:p-6 z-20 flex items-center gap-4">
+        <img src="logo.png" alt="Cesa Logo" class="h-12 w-auto">
     </header>
 
-    <div id="start-screen" class="w-full max-w-2xl mx-auto text-center fade-in">
-        <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Bytes of Fortune</h1>
-        <p class="text-xl text-slate-400 mb-6">You have <span class="font-bold text-indigo-400">15 minutes</span> to solve as many questions as you can.</p>
-        <div class="my-8 max-w-sm mx-auto bg-slate-800/50 p-4 rounded-lg ring-1 ring-slate-700/50">
-            <h3 class="text-lg font-semibold text-slate-300 mb-3 text-center">Point System</h3>
-            <div class="text-left space-y-2 text-slate-300">
+    <div id="start-screen" class="w-full max-w-4xl mx-auto text-center fade-in">
+        <h1 class="text-5xl font-extrabold mt-19 mb-6 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500 drop-shadow-lg">
+            Bytes of Fortune
+        </h1>
+
+        <p class="text-xl text-purple-300 mb-3">You have <span class="font-bold" style="color:var(--accent-color)">15 minutes</span> to solve as many questions as you can.</p>
+
+        <div class="my-4 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="p-4 rounded-lg glow-container text-left">
+                <h3 class="text-lg font-semibold mb-3 text-center pixel-font" style="color:var(--text-color);">Rules</h3>
+                <div class="text-purple-300 text-sm space-y-2">
+                    <p>• Solve as many questions as you can in 15 minutes.</p>
+                    <p>• Spin the wheel to get a question. Write a complete, working code for it, then click “Mark as Complete” before spinning again.</p>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-lg glow-container text-left">
+                <h3 class="text-lg font-semibold mb-3 text-center pixel-font" style="color:var(--text-color);">Judging</h3>
+                <div class="text-purple-300 text-sm space-y-2">
+                     <p>• After 15 minutes, the technical team will evaluate your code and run test cases to check correctness.</p>
+                     <p>• Only properly submitted and complete code will be considered for scoring.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="my-4 max-w-sm mx-auto p-4 rounded-lg glow-container">
+            <h3 class="text-lg font-semibold mb-3 text-center pixel-font" style="color:var(--text-color);">Point System</h3>
+            <div class="text-left space-y-2" style="color:var(--text-color);">
                 <p class="flex justify-between"><span><span class="font-bold text-green-400">Easy</span> Question</span> <span class="font-bold">50 Points</span></p>
                 <p class="flex justify-between"><span><span class="font-bold text-yellow-400">Medium</span> Question</span> <span class="font-bold">75 Points</span></p>
                 <p class="flex justify-between"><span><span class="font-bold text-red-400">Hard</span> Question</span> <span class="font-bold">100 Points</span></p>
             </div>
         </div>
-        <p class="text-slate-400 italic mb-8">Your fate and points depend on the spin!</p>
-        <button id="start-challenge-button" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 transition-all duration-300 transform hover:scale-105 text-lg">START CHALLENGE</button>
+
+        <p class="text-purple-300 italic mb-6">Your fate lies in the spin & the code!</p>
+
+        <button id="start-challenge-button" class="pixel-button text-lg">
+            Start Challenge
+        </button>
     </div>
 
     <main id="game-screen" class="hidden w-full max-w-6xl mx-auto">
@@ -87,307 +217,325 @@
             </div>
             <div class="flex flex-col space-y-4 h-full">
                 <div class="flex justify-between items-center px-4">
-                    <div>
-                        <p class="text-sm text-slate-400">Time Remaining</p>
-                        <p id="timer-display" class="text-2xl font-bold text-indigo-400">15:00</p>
+                    <div class="text-left">
+                        <p class="text-sm text-purple-300">Time Remaining</p>
+                        <p id="timer-display" class="text-2xl font-bold transition-transform duration-300" style="color: var(--accent-color);">15:00</p>
                     </div>
                     <div class="text-right">
-                        <p class="text-sm text-slate-400">Total Score</p>
-                        <p id="score-display" class="text-2xl font-bold text-green-400">0</p>
+                        <p class="text-sm text-purple-300">Total Score</p>
+                        <p id="score-display" class="text-2xl font-bold transition-transform duration-300" style="color: var(--success-color);">0</p>
                     </div>
                 </div>
                 <div class="flex-grow flex flex-col items-center justify-center min-h-[200px]">
-                    <div id="question-display" class="hidden w-full bg-slate-800 p-6 rounded-lg shadow-lg flex flex-col items-center justify-center ring-1 ring-slate-700">
+                     <div id="question-display" class="hidden w-full p-6 rounded-lg shadow-lg flex flex-col items-center justify-center glow-container">
                         <div class="flex justify-between items-center w-full mb-3">
-                            <p class="text-lg font-semibold text-slate-400" id="question-number">Question X</p>
-                            <span id="question-difficulty-badge" class="px-3 py-1 text-sm font-bold rounded-full">Difficulty</span>
+                            <p class="text-lg font-semibold text-purple-300" id="question-number">Question X</p>
+                            <span id="question-difficulty-badge" class="px-4 py-1 text-sm font-bold rounded-full">Difficulty</span>
                         </div>
-                        <p class="text-xl text-center text-slate-200 mb-4" id="question-text">This is the question.</p>
-                        <p class="text-indigo-400 font-bold" id="question-points">Points: Y</p>
+                        <p class="text-xl text-center mb-4" id="question-text" style="color: var(--text-color);">This is the question.</p>
+                        <p class="font-bold" id="question-points" style="color: var(--accent-color);">Points: Y</p>
                     </div>
-                    <div id="completion-message" class="hidden w-full bg-green-900/50 border border-green-500 text-green-300 px-4 py-3 rounded-lg text-center" role="alert">
+
+                    <div id="completion-message" class="hidden w-full bg-green-900/50 border border-green-500 px-4 py-3 rounded-lg text-center" role="alert" style="color:var(--success-color)">
                         <strong class="font-bold">Congratulations!</strong><br>
                         <span class="block sm:inline">You've answered all the questions.</span>
                     </div>
-                    <div id="times-up-message" class="hidden w-full bg-red-900/50 border border-red-500 text-red-300 px-4 py-3 rounded-lg text-center" role="alert">
+                    <div id="times-up-message" class="hidden w-full bg-red-900/50 border border-red-500 px-4 py-3 rounded-lg text-center" role="alert" style="color:var(--danger-color)">
                         <strong class="font-bold">Time's Up!</strong><br>
                         <span class="block sm:inline" id="final-score-text">You solved X questions.</span>
                     </div>
-                    <p id="pre-spin-message" class="text-slate-400 text-lg">Click the center of the wheel or press <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Space</kbd> to spin!</p>
+                     <p id="pre-spin-message" class="text-purple-300 text-lg">Click the center or press <kbd>Space</kbd> to spin!</p>
                 </div>
-                <div class="text-center h-14">
-                    <button id="submit-button" class="hidden bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500 transition-all duration-300 transform hover:scale-105">MARK AS COMPLETE</button>
+                <div id="button-container" class="text-center h-14">
+                    <button id="submit-button" class="hidden pixel-button green">
+                        MARK AS COMPLETE
+                    </button>
                 </div>
-                <div id="completed-questions-container" class="hidden w-full bg-slate-800/50 p-4 rounded-lg ring-1 ring-slate-700/50">
-                    <h3 class="text-lg font-semibold text-slate-300 mb-3 text-center">Completed Questions</h3>
-                    <div id="completed-questions-list" class="flex flex-wrap gap-2 justify-center max-h-32 overflow-y-auto p-1"></div>
+                <div id="completed-questions-container" class="hidden w-full p-4 rounded-lg glow-container">
+                    <h3 class="text-lg font-semibold text-center mb-3 pixel-font" style="color:var(--text-color);">Completed</h3>
+                    <div id="completed-questions-list" class="flex flex-wrap gap-2 justify-center max-h-32 overflow-y-auto p-1">
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const elements = {
-            canvas: document.getElementById('wheelCanvas'),
-            submitButton: document.getElementById('submit-button'),
-            questionDisplay: document.getElementById('question-display'),
-            questionNumber: document.getElementById('question-number'),
-            questionText: document.getElementById('question-text'),
-            questionDifficultyBadge: document.getElementById('question-difficulty-badge'),
-            questionPoints: document.getElementById('question-points'),
-            pointer: document.getElementById('pointer'),
-            completionMessage: document.getElementById('completion-message'),
-            startScreen: document.getElementById('start-screen'),
-            gameScreen: document.getElementById('game-screen'),
-            startChallengeButton: document.getElementById('start-challenge-button'),
-            timerDisplay: document.getElementById('timer-display'),
-            scoreDisplay: document.getElementById('score-display'),
-            timesUpMessage: document.getElementById('times-up-message'),
-            finalScoreText: document.getElementById('final-score-text'),
-            preSpinMessage: document.getElementById('pre-spin-message'),
-            completedQuestionsContainer: document.getElementById('completed-questions-container'),
-            completedQuestionsList: document.getElementById('completed-questions-list'),
-        };
+document.addEventListener('DOMContentLoaded', () => {
+    const elements = {
+        canvas: document.getElementById('wheelCanvas'),
+        submitButton: document.getElementById('submit-button'),
+        questionDisplay: document.getElementById('question-display'),
+        questionNumber: document.getElementById('question-number'),
+        questionText: document.getElementById('question-text'),
+        questionDifficultyBadge: document.getElementById('question-difficulty-badge'),
+        questionPoints: document.getElementById('question-points'),
+        pointer: document.getElementById('pointer'),
+        completionMessage: document.getElementById('completion-message'),
+        startScreen: document.getElementById('start-screen'),
+        gameScreen: document.getElementById('game-screen'),
+        startChallengeButton: document.getElementById('start-challenge-button'),
+        timerDisplay: document.getElementById('timer-display'),
+        scoreDisplay: document.getElementById('score-display'),
+        timesUpMessage: document.getElementById('times-up-message'),
+        finalScoreText: document.getElementById('final-score-text'),
+        preSpinMessage: document.getElementById('pre-spin-message'),
+        completedQuestionsContainer: document.getElementById('completed-questions-container'),
+        completedQuestionsList: document.getElementById('completed-questions-list'),
+    };
 
-        const ctx = elements.canvas.getContext('2d');
+    const ctx = elements.canvas.getContext('2d');
 
-        const questions = [ { id: 1,  text: "Write a function that takes a string as input and returns it reversed.", difficulty: 'Easy', points: 50 }, { id: 2,  text: "Create a function that returns the sum of all numbers in a given array.", difficulty: 'Easy', points: 50 }, { id: 3,  text: "Write a function `isEven(num)` that returns true if a number is even and false otherwise.", difficulty: 'Easy', points: 50 }, { id: 4,  text: "Implement a function `findMax(arr)` that returns the largest number in an array.", difficulty: 'Easy', points: 50 }, { id: 5,  text: "Using a `for` loop, write a function to print all numbers from 1 to 10.", difficulty: 'Easy', points: 50 }, { id: 6,  text: "Write a function `countVowels(str)` that counts the number of vowels in a string.", difficulty: 'Medium', points: 75 }, { id: 7,  text: "Create a function that takes a name and returns a greeting string 'Hello, [name]!'.", difficulty: 'Easy', points: 50 }, { id: 8,  text: "Write a function `isPalindrome(str)` to check if a given string is a palindrome.", difficulty: 'Medium', points: 75 }, { id: 9,  text: "Implement `fizzBuzz(n)`. Print numbers from 1 to n, but for multiples of 3 print 'Fizz', for 5 print 'Buzz', and for both print 'FizzBuzz'.", difficulty: 'Medium', points: 75 }, { id: 10, text: "Write a function `removeDuplicates(arr)` that removes duplicate elements from an array.", difficulty: 'Medium', points: 75 }, { id: 11, text: "Implement a binary search function for a sorted array of numbers.", difficulty: 'Hard', points: 100 }, { id: 12, text: "Write a function to find the factorial of a number using recursion.", difficulty: 'Medium', points: 75 }, { id: 13, text: "Create a function `areAnagrams(str1, str2)` to check if two strings are anagrams.", difficulty: 'Hard', points: 100 }, { id: 14, text: "Write a function `findMissingNumber(arr)` that finds a missing number in an integer array from 1 to 10.", difficulty: 'Medium', points: 75 }, { id: 15, text: "Create a JavaScript closure that acts as a counter with an increment function.", difficulty: 'Hard', points: 100 }, { id: 16, text: "Implement a function `twoSum(arr, target)` that finds two numbers in an array that add up to a specific target.", difficulty: 'Hard', points: 100 }, { id: 17, text: "Given an array of numbers, write a function to find the second largest number.", difficulty: 'Medium', points: 75 }, { id: 18, text: "Write a function to merge two sorted arrays into a single sorted array.", difficulty: 'Hard', points: 100 }, { id: 19, text: "Implement a function to find the Nth number in the Fibonacci sequence efficiently.", difficulty: 'Hard', points: 100 }, { id: 20, text: "Write a function `rotateArray(arr, k)` that rotates an array to the right by `k` steps.", difficulty: 'Hard', points: 100 } ];
-        const colors = [ '#581c87', '#6b21a8', '#7e22ce', '#9333ea', '#a855f7', '#312e81', '#3730a3', '#4338ca', '#4f46e5', '#6366f1', '#1e3a8a', '#1e40af', '#1d4ed8', '#2563eb', '#3b82f6', '#581c87', '#7e22ce', ' #3730a3', '#4f46e5', '#1e40af' ];
-        
-        let state = {
-            availableOptions: Array.from({ length: 20 }, (_, i) => i + 1),
-            completedQuestions: [],
-            currentRotation: 0,
-            isSpinning: false,
-            lastWinner: null,
-            timerInterval: null,
-            timeLeft: 15 * 60,
-            totalScore: 0,
-            questionsSolved: 0,
-        };
-        
-        const drawWheel = () => {
-            const numSegments = 20; // Always draw 20 segments for a static layout
-            const arcSize = (2 * Math.PI) / numSegments;
-            ctx.clearRect(0, 0, 600, 600);
+    const questions = [
+        { id: 1, text: "Write a function that takes a string as input and returns it reversed.", difficulty: 'Easy', points: 50 },
+        { id: 2, text: "Create a function that returns the sum of all numbers in a given array.", difficulty: 'Easy', points: 50 },
+        { id: 3, text: "Write a function `isEven(num)` that returns true if a number is even and false otherwise.", difficulty: 'Easy', points: 50 },
+        { id: 4, text: "Implement a function `findMax(arr)` that returns the largest number in an array.", difficulty: 'Easy', points: 50 },
+        { id: 5, text: "Using a `for` loop, write a function to print all numbers from 1 to 10.", difficulty: 'Easy', points: 50 },
+        { id: 6, text: "Create a function that takes a name and returns a greeting string 'Hello, [name]!'.", difficulty: 'Easy', points: 50 },
+        { id: 7, text: "Implement `fizzBuzz(n)`. Print numbers from 1 to n with 'Fizz' for multiples of 3, 'Buzz' for 5, and 'FizzBuzz' for both.", difficulty: 'Easy', points: 50 },
+        { id: 8, text: "Write a function to swap two variables without using a temporary variable.", difficulty: 'Easy', points: 50 },
+        { id: 9, text: "Write a function `countVowels(str)` that counts the number of vowels in a string.", difficulty: 'Easy', points: 50 },
+        { id: 10, text: "Write a function `isPalindrome(str)` to check if a given string is a palindrome.", difficulty: 'Medium', points: 75 },
+        { id: 11, text: "Write a function `removeDuplicates(arr)` that removes duplicate elements from an array.", difficulty: 'Medium', points: 75 },
+        { id: 12, text: "Write a function to find the factorial of a number using recursion.", difficulty: 'Medium', points: 75 },
+        { id: 13, text: "Given an array of numbers, write a function to find the second largest number.", difficulty: 'Medium', points: 75 },
+        { id: 14, text: "Write a function `findMissingNumber(arr)` that finds the missing number in an integer array from 1 to 10.", difficulty: 'Medium', points: 75 },
+        { id: 15, text: "Write a function that counts the frequency of each word in a string and returns an object mapping words to counts.", difficulty: 'Medium', points: 75 },
+        { id: 16, text: "Implement a binary search function for a sorted array of numbers.", difficulty: 'Hard', points: 100 },
+        { id: 17, text: "Write a function that checks if a string of brackets '()[]{}' is balanced.", difficulty: 'Hard', points: 100 },
+        { id: 18, text: "Implement a function `twoSum(arr, target)` that finds two numbers in an array that add up to a specific target.", difficulty: 'Hard', points: 100 },
+        { id: 19, text: "Write a function to merge two sorted arrays into a single sorted array.", difficulty: 'Hard', points: 100 },
+        { id: 20, text: "Implement a function to find the Nth number in the Fibonacci sequence efficiently.", difficulty: 'Hard', points: 100 }
+    ];
 
-            if (state.availableOptions.length === 0) {
-                ctx.beginPath(); ctx.arc(300, 300, 290, 0, Math.PI * 2);
-                ctx.fillStyle = '#334155'; ctx.fill();
-                ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 36px Poppins';
-                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-                ctx.fillText('All Done!', 300, 300);
-                return;
-            }
+    const colors = [ '#581c87', '#6b21a8', '#7e22ce', '#9333ea', '#a855f7', '#312e81', '#3730a3', '#4338ca', '#4f46e5', '#6366f1', '#1e3a8a', '#1e40af', '#1d4ed8', '#2563eb', '#3b82f6', '#581c87', '#7e22ce', ' #3730a3', '#4f46e5', '#1e40af' ];
+    
+    let state = {
+        availableOptions: Array.from({ length: 20 }, (_, i) => i + 1),
+        completedQuestions: [],
+        currentRotation: 0,
+        isSpinning: false,
+        lastWinner: null,
+        timerInterval: null,
+        timeLeft: 15 * 60,
+        totalScore: 0,
+        questionsSolved: 0,
+    };
 
+    const drawWheel = () => {
+        const numOptions = state.availableOptions.length;
+        ctx.clearRect(0, 0, 600, 600);
+        if (numOptions === 0) {
+            ctx.beginPath(); ctx.arc(300, 300, 290, 0, Math.PI * 2);
+            ctx.fillStyle = '#334155'; ctx.fill();
+            ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 36px Poppins';
+            ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.fillText('All Done!', 300, 300);
+            return;
+        }
+        const arcSize = (2 * Math.PI) / numOptions;
+        ctx.save();
+        ctx.translate(300, 300);
+        ctx.rotate(state.currentRotation);
+        state.availableOptions.forEach((option, i) => {
+            const angle = i * arcSize;
+            ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, 290, angle, angle + arcSize); ctx.closePath();
+            ctx.fillStyle = colors[(option - 1) % colors.length]; ctx.fill();
             ctx.save();
-            ctx.translate(300, 300);
-            ctx.rotate(state.currentRotation);
-
-            for (let i = 0; i < numSegments; i++) {
-                const questionNumber = i + 1;
-                const angle = i * arcSize;
-                const isAvailable = state.availableOptions.includes(questionNumber);
-
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.arc(0, 0, 290, angle, angle + arcSize);
-                ctx.closePath();
-                ctx.fillStyle = isAvailable ? colors[(questionNumber - 1) % colors.length] : '#334155';
-                ctx.fill();
-
-                ctx.save();
-                ctx.fillStyle = isAvailable ? 'white' : '#64748b';
-                ctx.font = 'bold 28px Poppins';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                const textAngle = angle + arcSize / 2;
-                ctx.rotate(textAngle);
-                ctx.fillText(questionNumber, 220, 0);
-                ctx.restore();
-            }
+            ctx.fillStyle = 'white'; ctx.font = 'bold 28px Poppins'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            const textAngle = angle + arcSize / 2;
+            ctx.rotate(textAngle); ctx.fillText(option, 220, 0);
             ctx.restore();
-
-            ctx.beginPath(); ctx.arc(300, 300, 60, 0, Math.PI * 2, false);
-            ctx.fillStyle = '#4f46e5'; ctx.fill();
-            ctx.strokeStyle = '#818cf8'; ctx.lineWidth = 5; ctx.stroke();
-            ctx.fillStyle = 'white'; ctx.font = 'bold 24px Poppins'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-            ctx.fillText('SPIN', 300, 300);
-        };
-
-        const spin = async () => {
-            if (state.isSpinning || state.availableOptions.length === 0) return;
-            state.isSpinning = true;
-            elements.preSpinMessage.classList.add('hidden');
-            
-            await Tone.start();
-            const tickSynth = new Tone.MembraneSynth().toDestination();
-            const loop = new Tone.Loop(time => {
-                tickSynth.triggerAttackRelease("C1", "8n", time);
-            }, "16n").start(0);
-            Tone.Transport.start();
-
-            const spinAngle = Math.random() * (Math.PI * 12) + (Math.PI * 8);
-            const spinDuration = 4000;
-            const startRotation = state.currentRotation;
-            const start = performance.now();
-
-            const animate = (time) => {
-                const elapsed = time - start;
-                const progress = Math.min(elapsed / spinDuration, 1);
-                const easeOut = 1 - Math.pow(1 - progress, 4);
-                state.currentRotation = startRotation + spinAngle * easeOut;
-                drawWheel();
-                if (progress < 1) {
-                    requestAnimationFrame(animate);
-                } else {
-                    loop.stop();
-                    Tone.Transport.stop();
-                    Tone.Transport.cancel();
-                    onSpinEnd();
-                }
-            };
-            requestAnimationFrame(animate);
-        };
-
-        const onSpinEnd = () => {
-            const numSegments = 20;
-            const arcSize = (2 * Math.PI) / numSegments;
-            const finalAngle = state.currentRotation % (2 * Math.PI);
-            const pointerAngle = (2 * Math.PI - finalAngle) % (2 * Math.PI);
-            const winningSegmentIndex = Math.floor(pointerAngle / arcSize);
-            const winnerNumber = winningSegmentIndex + 1;
-
-            if (state.availableOptions.includes(winnerNumber)) {
-                state.lastWinner = winnerNumber;
-                
-                const dingSynth = new Tone.MetalSynth({ frequency: 250, envelope: { attack: 0.001, decay: 0.4, release: 0.2 }, harmonicity: 5.1, modulationIndex: 32, resonance: 4000, octaves: 1.5, }).toDestination();
-                dingSynth.triggerAttackRelease("C4", "8n");
-
-                elements.pointer.classList.add('bounce');
-                setTimeout(() => elements.pointer.classList.remove('bounce'), 500);
-                showQuestion(state.lastWinner);
-                state.isSpinning = false;
-            } else {
-                spin();
-            }
-        };
-
-        const showQuestion = (number) => {
-            const question = questions.find(q => q.id === number);
-            if (!question) return;
-
-            elements.questionNumber.textContent = `Question ${question.id}`;
-            elements.questionText.textContent = question.text;
-            elements.questionPoints.textContent = `Points: ${question.points}`;
-
-            const difficultyConfig = {
-                'Easy':   { text: 'Easy',   classes: 'bg-green-200 text-green-800' },
-                'Medium': { text: 'Medium', classes: 'bg-yellow-200 text-yellow-800' },
-                'Hard':   { text: 'Hard',   classes: 'bg-red-200 text-red-800' }
-            };
-            
-            const config = difficultyConfig[question.difficulty];
-            elements.questionDifficultyBadge.textContent = config.text;
-            elements.questionDifficultyBadge.className = 'px-3 py-1 text-sm font-bold rounded-full ' + config.classes;
-
-            elements.questionDisplay.classList.remove('hidden');
-            elements.questionDisplay.classList.add('fade-in');
-            elements.submitButton.classList.remove('hidden');
-            elements.preSpinMessage.classList.add('hidden');
-        };
-
-        const updateUI = () => {
-            elements.scoreDisplay.textContent = state.totalScore;
-            
-            elements.completedQuestionsList.innerHTML = '';
-            if(state.completedQuestions.length > 0) {
-                elements.completedQuestionsContainer.classList.remove('hidden');
-            }
-            state.completedQuestions.sort((a, b) => a.number - b.number).forEach(q => {
-                const item = document.createElement('div');
-                item.className = "bg-slate-700 text-slate-300 font-bold text-sm rounded-md h-10 w-10 flex items-center justify-center ring-1 ring-slate-600 shadow-md";
-                item.textContent = q.number;
-                item.title = `Question ${q.number}: ${q.text}`;
-                elements.completedQuestionsList.appendChild(item);
-            });
-
-            elements.questionDisplay.classList.add('hidden');
-            elements.submitButton.classList.add('hidden');
-            if (state.availableOptions.length > 0) {
-                 elements.preSpinMessage.classList.remove('hidden');
-            } else {
-                elements.completionMessage.classList.remove('hidden');
-                elements.completionMessage.classList.add('fade-in');
-            }
-            state.isSpinning = false;
-        };
-
-        elements.startChallengeButton.addEventListener('click', () => {
-            elements.startScreen.classList.add('fade-out');
-            setTimeout(() => {
-                elements.startScreen.classList.add('hidden');
-                elements.gameScreen.classList.remove('hidden');
-                elements.gameScreen.classList.add('fade-in');
-                state.timerInterval = setInterval(() => {
-                    state.timeLeft--;
-                    const minutes = Math.floor(state.timeLeft / 60).toString().padStart(2, '0');
-                    const seconds = (state.timeLeft % 60).toString().padStart(2, '0');
-                    elements.timerDisplay.textContent = `${minutes}:${seconds}`;
-                    if (state.timeLeft <= 0) {
-                        clearInterval(state.timerInterval);
-                        elements.timesUpMessage.classList.remove('hidden');
-                        elements.timesUpMessage.classList.add('fade-in');
-                        elements.finalScoreText.innerHTML = `You solved ${state.questionsSolved} question${state.questionsSolved !== 1 ? 's' : ''} for a total of <span class="font-bold">${state.totalScore}</span> points.`;
-                        state.isSpinning = true;
-                    }
-                }, 1000);
-            }, 500);
         });
+        ctx.restore();
+        ctx.beginPath(); ctx.arc(300, 300, 60, 0, Math.PI * 2, false);
+        ctx.fillStyle = '#4f46e5'; ctx.fill();
+        ctx.strokeStyle = '#818cf8'; ctx.lineWidth = 5; ctx.stroke();
+        ctx.fillStyle = 'white'; ctx.font = 'bold 24px Poppins'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('SPIN', 300, 300);
+    };
 
-        elements.submitButton.addEventListener('click', () => {
-            if (state.lastWinner !== null) {
-                const question = questions.find(q => q.id === state.lastWinner);
-                if (question) {
-                    state.totalScore += question.points;
-                    state.questionsSolved++;
-                    state.completedQuestions.push({ number: state.lastWinner, text: question.text });
-                    state.availableOptions = state.availableOptions.filter(opt => opt !== state.lastWinner);
-                    state.lastWinner = null;
-                    drawWheel();
-                    updateUI();
-                    if(state.availableOptions.length === 0) {
-                        clearInterval(state.timerInterval);
-                    }
-                }
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if(elements.gameScreen.classList.contains('hidden') || e.repeat) return;
-            if (e.code === 'Space' && !state.isSpinning) {
-                e.preventDefault();
-                spin();
-            }
-            if (e.code === 'Enter' && !elements.submitButton.classList.contains('hidden')) {
-                e.preventDefault();
-                elements.submitButton.click();
-            }
-        });
+    const spin = async () => {
+        if (state.isSpinning || state.availableOptions.length === 0) return;
+        state.isSpinning = true;
+        elements.preSpinMessage.classList.add('hidden');
         
-        elements.canvas.addEventListener('click', (event) => {
-            const rect = elements.canvas.getBoundingClientRect();
-            const scaleX = 600 / rect.width;
-            const scaleY = 600 / rect.height;
-            const x = (event.clientX - rect.left) * scaleX;
-            const y = (event.clientY - rect.top) * scaleY;
-            const distance = Math.sqrt(Math.pow(x - 300, 2) + Math.pow(y - 300, 2));
-            if (distance <= 60) spin();
+        const spinAngle = Math.random() * (Math.PI * 12) + (Math.PI * 8);
+        const spinDuration = 2000;
+        const startRotation = state.currentRotation;
+        const start = performance.now();
+
+        const animate = (time) => {
+            const elapsed = time - start;
+            const progress = Math.min(elapsed / spinDuration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 4);
+            state.currentRotation = startRotation + spinAngle * easeOut;
+            drawWheel();
+            if (progress < 1) requestAnimationFrame(animate);
+            else onSpinEnd();
+        };
+        requestAnimationFrame(animate);
+    };
+
+    // --- REFACTORED WINNER SELECTION FOR CLARITY ---
+    const onSpinEnd = () => {
+        const numOptions = state.availableOptions.length;
+        if (numOptions === 0) return;
+        const arcSize = (2 * Math.PI) / numOptions;
+
+        // The pointer is at the top of the circle (12 o'clock). In a standard canvas coordinate system
+        // where 0 radians is at 3 o'clock, the top is at 3*PI/2 radians.
+        const pointerAngle = 3 * Math.PI / 2;
+        
+        // We calculate the effective angle of the pointer relative to the wheel's starting position.
+        // This is the pointer's fixed angle minus the wheel's rotation.
+        let effectiveAngle = pointerAngle - state.currentRotation;
+        
+        // Normalize the angle to be within the range [0, 2*PI).
+        // The `(a % n + n) % n` formula is a robust way to handle the modulo of negative numbers in JS.
+        effectiveAngle = (effectiveAngle % (2 * Math.PI) + (2 * Math.PI)) % (2 * Math.PI);
+
+        // The winning index is the segment that falls under the effective angle.
+        const winningIndex = Math.floor(effectiveAngle / arcSize);
+        state.lastWinner = state.availableOptions[winningIndex];
+
+        elements.pointer.classList.add('bounce');
+        setTimeout(() => elements.pointer.classList.remove('bounce'), 500);
+
+        showQuestion(state.lastWinner);
+    };
+
+    const showQuestion = (number) => {
+        const question = questions.find(q => q.id === number);
+        if (!question) return;
+
+        elements.questionNumber.textContent = `Question ${question.id}`;
+        elements.questionText.textContent = question.text;
+        elements.questionPoints.textContent = `Points: ${question.points}`;
+        
+        // FIX: Use new CSS classes for badges instead of undefined Tailwind classes
+        const difficultyConfig = {
+            'Easy':   { text: 'Easy',   classes: 'badge-easy' },
+            'Medium': { text: 'Medium', classes: 'badge-medium' },
+            'Hard':   { text: 'Hard',   classes: 'badge-hard' }
+        };
+        
+        const config = difficultyConfig[question.difficulty];
+        elements.questionDifficultyBadge.textContent = config.text;
+        elements.questionDifficultyBadge.className = 'px-4 py-1 text-sm font-bold rounded-full ' + config.classes;
+
+        elements.questionDisplay.classList.remove('hidden');
+        elements.questionDisplay.classList.add('fade-in');
+        elements.submitButton.classList.remove('hidden');
+        elements.preSpinMessage.classList.add('hidden');
+        
+        // IMPROVEMENT: Set focus on the submit button for better accessibility
+        elements.submitButton.focus();
+    };
+
+    const updateUI = () => {
+        elements.scoreDisplay.textContent = state.totalScore;
+        elements.scoreDisplay.classList.add('pulse');
+        setTimeout(() => elements.scoreDisplay.classList.remove('pulse'), 500);
+
+        elements.completedQuestionsList.innerHTML = '';
+        if(state.completedQuestions.length > 0) {
+            elements.completedQuestionsContainer.classList.remove('hidden');
+        }
+        state.completedQuestions.sort((a, b) => a.number - b.number).forEach(q => {
+            const item = document.createElement('div');
+            item.className = "bg-slate-700 text-slate-300 font-bold text-sm rounded-md h-10 w-10 flex items-center justify-center ring-1 ring-slate-600 shadow-md transition-transform transform hover:scale-110";
+            item.textContent = q.number;
+            item.title = `Question ${q.number}: ${q.text}`;
+            elements.completedQuestionsList.appendChild(item);
         });
 
-        drawWheel();
+        elements.questionDisplay.classList.add('hidden');
+        elements.submitButton.classList.add('hidden');
+        if (state.availableOptions.length > 0) {
+             elements.preSpinMessage.classList.remove('hidden');
+        } else {
+            elements.completionMessage.classList.remove('hidden');
+            elements.completionMessage.classList.add('fade-in');
+        }
+        state.isSpinning = false;
+    };
+
+    elements.startChallengeButton.addEventListener('click', async () => {
+        elements.startScreen.classList.add('fade-out');
+        setTimeout(() => {
+            elements.startScreen.classList.add('hidden');
+            elements.gameScreen.classList.remove('hidden');
+            elements.gameScreen.classList.add('fade-in');
+            state.timerInterval = setInterval(() => {
+                state.timeLeft--;
+                const minutes = Math.floor(state.timeLeft / 60).toString().padStart(2, '0');
+                const seconds = (state.timeLeft % 60).toString().padStart(2, '0');
+                elements.timerDisplay.textContent = `${minutes}:${seconds}`;
+                if (state.timeLeft <= 0) {
+                    clearInterval(state.timerInterval);
+                    elements.timesUpMessage.classList.remove('hidden');
+                    elements.timesUpMessage.classList.add('fade-in');
+                    elements.finalScoreText.innerHTML = `You solved ${state.questionsSolved} question${state.questionsSolved !== 1 ? 's' : ''} for a total of <span class="font-bold">${state.totalScore}</span> points.`;
+                    state.isSpinning = true;
+                }
+            }, 1000);
+        }, 500);
     });
-    </script>
+
+    elements.submitButton.addEventListener('click', () => {
+        if (state.lastWinner !== null) {
+            const question = questions.find(q => q.id === state.lastWinner);
+            if (question) {
+                state.totalScore += question.points;
+                state.questionsSolved++;
+                state.completedQuestions.push({ number: state.lastWinner, text: question.text });
+                state.availableOptions = state.availableOptions.filter(opt => opt !== state.lastWinner);
+                state.lastWinner = null;
+                drawWheel();
+                updateUI();
+                if(state.availableOptions.length === 0) {
+                    clearInterval(state.timerInterval);
+                }
+            }
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if(elements.gameScreen.classList.contains('hidden')) return;
+        if (e.code === 'Space' && !state.isSpinning && elements.submitButton.classList.contains('hidden')) {
+            e.preventDefault();
+            spin();
+        }
+        if (e.code === 'Enter' && !elements.submitButton.classList.contains('hidden')) {
+            e.preventDefault();
+            elements.submitButton.click();
+        }
+    });
+    
+    elements.canvas.addEventListener('click', (event) => {
+        const rect = elements.canvas.getBoundingClientRect();
+        const scaleX = 600 / rect.width;
+        const scaleY = 600 / rect.height;
+        const x = (event.clientX - rect.left) * scaleX;
+        const y = (event.clientY - rect.top) * scaleY;
+        const distance = Math.sqrt(Math.pow(x - 300, 2) + Math.pow(y - 300, 2));
+        if (distance <= 60) spin();
+    });
+
+    elements.canvas.addEventListener('mousemove', (event) => {
+        const rect = elements.canvas.getBoundingClientRect();
+        const scaleX = 600 / rect.width;
+        const scaleY = 600 / rect.height;
+        const x = (event.clientX - rect.left) * scaleX;
+        const y = (event.clientY - rect.top) * scaleY;
+        const distance = Math.sqrt(Math.pow(x - 300, 2) + Math.pow(y - 300, 2));
+        elements.canvas.style.cursor = (distance <= 60 && !state.isSpinning && state.availableOptions.length > 0) ? 'pointer' : 'default';
+    });
+
+    drawWheel();
+});
+</script>
 </body>
 </html>
