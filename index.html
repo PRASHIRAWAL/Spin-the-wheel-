@@ -287,32 +287,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = elements.canvas.getContext('2d');
 
     const questions = [
-    // Easy (50 points each) – Quick wins, 1–2 min
-    { id: 1, text: "Reverse a given string.", difficulty: 'Easy', points: 50 },
-    { id: 2, text: "Check if a number is even.", difficulty: 'Easy', points: 50 },
-    { id: 3, text: "Count vowels in a string.", difficulty: 'Easy', points: 50 },
+    { id: 1, text: "Check if a string of brackets '()[]{}' is balanced.", difficulty: 'Hard', points: 100 },
+    { id: 2, text: "Reverse a given string.", difficulty: 'Easy', points: 50 },
+    { id: 3, text: "Find the missing number in an integer array from 1 to 10.", difficulty: 'Medium', points: 75 },
     { id: 4, text: "Swap two variables without a temporary variable.", difficulty: 'Easy', points: 50 },
-    { id: 5, text: "Move all zeros in an array to the end.", difficulty: 'Easy', points: 50 },
-    { id: 6, text: "Print numbers 1 to n with FizzBuzz rules.", difficulty: 'Easy', points: 50 },
-    { id: 7, text: "Find the largest number in an array.", difficulty: 'Easy', points: 50 },
-    { id: 8, text: "Check if a string is a palindrome.", difficulty: 'Easy', points: 50 },
-    { id: 9, text: "Find the sum of digits of a number.", difficulty: 'Easy', points: 50 },
-    { id: 10, text: "Convert lowercase letters in a string to uppercase.", difficulty: 'Easy', points: 50 },
-
-    // Medium (75 points each) – Slightly tricky, 3–4 min
-    { id: 11, text: "Remove duplicate elements from an array.", difficulty: 'Medium', points: 75 },
-    { id: 12, text: "Find the second largest number in an array.", difficulty: 'Medium', points: 75 },
-    { id: 13, text: "Find the missing number in an integer array from 1 to 10.", difficulty: 'Medium', points: 75 },
-    { id: 14, text: "Count the frequency of each word in a string.", difficulty: 'Medium', points: 75 },
-    { id: 15, text: "Convert a Roman numeral to an integer.", difficulty: 'Medium', points: 75 },
-    { id: 16, text: "Calculate factorial of a number using recursion.", difficulty: 'Medium', points: 75 },
-    { id: 17, text: "Check if a number is a prime number.", difficulty: 'Medium', points: 75 },
-
-    // Hard (100 points each) – Tricky, 4–5 min
-    { id: 18, text: "Check if a string of brackets '()[]{}' is balanced.", difficulty: 'Hard', points: 100 },
-    { id: 19, text: "Implement `twoSum(arr, target)` to find two numbers in an array that sum to a target.", difficulty: 'Hard', points: 100 },
-    { id: 20, text: "Merge two sorted arrays into a single sorted array.", difficulty: 'Hard', points: 100 }
+    { id: 5, text: "Count the frequency of each word in a string.", difficulty: 'Medium', points: 75 },
+    { id: 6, text: "Move all zeros in an array to the end.", difficulty: 'Easy', points: 50 },
+    { id: 7, text: "Implement `twoSum(arr, target)` to find two numbers in an array that sum to a target.", difficulty: 'Hard', points: 100 },
+    { id: 8, text: "Check if a number is a prime number.", difficulty: 'Medium', points: 75 },
+    { id: 9, text: "Print numbers 1 to n with FizzBuzz rules.", difficulty: 'Easy', points: 50 },
+    { id: 10, text: "Merge two sorted arrays into a single sorted array.", difficulty: 'Hard', points: 100 },
+    { id: 11, text: "Check if a string is a palindrome.", difficulty: 'Easy', points: 50 },
+    { id: 12, text: "Remove duplicate elements from an array.", difficulty: 'Medium', points: 75 },
+    { id: 13, text: "Find the largest number in an array.", difficulty: 'Easy', points: 50 },
+    { id: 14, text: "Calculate factorial of a number using recursion.", difficulty: 'Medium', points: 75 },
+    { id: 15, text: "Count vowels in a string.", difficulty: 'Easy', points: 50 },
+    { id: 16, text: "Find the second largest number in an array.", difficulty: 'Medium', points: 75 },
+    { id: 17, text: "Convert a Roman numeral to an integer.", difficulty: 'Medium', points: 75 },
+    { id: 18, text: "Check if a number is even.", difficulty: 'Easy', points: 50 },
+    { id: 19, text: "Sum of digits of a number.", difficulty: 'Easy', points: 50 },
+    { id: 20, text: "Convert lowercase letters in a string to uppercase.", difficulty: 'Easy', points: 50 }
 ];
+
 
     const colors = [ '#581c87', '#6b21a8', '#7e22ce', '#9333ea', '#a855f7', '#312e81', '#3730a3', '#4338ca', '#4f46e5', '#6366f1', '#1e3a8a', '#1e40af', '#1d4ed8', '#2563eb', '#3b82f6', '#581c87', '#7e22ce', ' #3730a3', '#4f46e5', '#1e40af' ];
     
@@ -561,4 +557,5 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
