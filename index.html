@@ -234,6 +234,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                         </div>
                         <p class="text-xl text-center mb-4" id="question-text" style="color: var(--text-color);">This is the question.</p>
                         <p class="font-bold" id="question-points" style="color: var(--accent-color);">Points: Y</p>
+                        <div id="question-examples" class="hidden w-full text-left mt-3"></div>
                     </div>
 
                     <div id="completion-message" class="hidden w-full bg-green-900/50 border border-green-500 px-4 py-3 rounded-lg text-center" role="alert" style="color:var(--success-color)">
@@ -286,28 +287,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const ctx = elements.canvas.getContext('2d');
 
-    const questions = [
-    { id: 1, text: "Check if a string of brackets '()[]{}' is balanced.", difficulty: 'Hard', points: 100 },
-    { id: 2, text: "Reverse a given string.", difficulty: 'Easy', points: 50 },
-    { id: 3, text: "Find the missing number in an integer array from 1 to 10.", difficulty: 'Medium', points: 75 },
-    { id: 4, text: "Swap two variables without a temporary variable.", difficulty: 'Easy', points: 50 },
-    { id: 5, text: "Count the frequency of each word in a string.", difficulty: 'Medium', points: 75 },
-    { id: 6, text: "Move all zeros in an array to the end.", difficulty: 'Easy', points: 50 },
-    { id: 7, text: "Implement `twoSum(arr, target)` to find two numbers in an array that sum to a target.", difficulty: 'Hard', points: 100 },
-    { id: 8, text: "Check if a number is a prime number.", difficulty: 'Medium', points: 75 },
-    { id: 9, text: "Print numbers 1 to n with FizzBuzz rules.", difficulty: 'Easy', points: 50 },
-    { id: 10, text: "Merge two sorted arrays into a single sorted array.", difficulty: 'Hard', points: 100 },
-    { id: 11, text: "Check if a string is a palindrome.", difficulty: 'Easy', points: 50 },
-    { id: 12, text: "Remove duplicate elements from an array.", difficulty: 'Medium', points: 75 },
-    { id: 13, text: "Find the largest number in an array.", difficulty: 'Easy', points: 50 },
-    { id: 14, text: "Calculate factorial of a number using recursion.", difficulty: 'Medium', points: 75 },
-    { id: 15, text: "Count vowels in a string.", difficulty: 'Easy', points: 50 },
-    { id: 16, text: "Find the second largest number in an array.", difficulty: 'Medium', points: 75 },
-    { id: 17, text: "Convert a Roman numeral to an integer.", difficulty: 'Medium', points: 75 },
-    { id: 18, text: "Check if a number is even.", difficulty: 'Easy', points: 50 },
-    { id: 19, text: "Sum of digits of a number.", difficulty: 'Easy', points: 50 },
-    { id: 20, text: "Convert lowercase letters in a string to uppercase.", difficulty: 'Easy', points: 50 }
+    
+const questions = [
+    { id: 1, text: "Check if a string of brackets '()[]{}' is balanced.", difficulty: 'Hard', points: 100,
+      examples: [{ input: "()[]{}", output: true }, { input: "(]", output: false }] },
+    { id: 2, text: "Reverse a given string.", difficulty: 'Easy', points: 50,
+      examples: [{ input: "hello", output: "olleh" }] },
+    { id: 3, text: "Find the missing number in an integer array from 1 to 10.", difficulty: 'Medium', points: 75,
+      examples: [{ input: [1,2,3,5,6,7,8,9,10], output: 4 }] },
+    { id: 4, text: "Swap two variables without a temporary variable.", difficulty: 'Easy', points: 50,
+      examples: [{ input: {a:5, b:7}, output: {a:7, b:5} }] },
+    { id: 5, text: "Count the frequency of each word in a string.", difficulty: 'Medium', points: 75,
+      examples: [{ input: "cat dog cat", output: {cat:2, dog:1} }] },
+    { id: 6, text: "Move all zeros in an array to the end.", difficulty: 'Easy', points: 50,
+      examples: [{ input: [0,1,0,3,12], output: [1,3,12,0,0] }] },
+    { id: 7, text: "Implement `twoSum(arr, target)` to find two numbers in an array that sum to a target.", difficulty: 'Hard', points: 100,
+      examples: [{ input: {arr:[2,7,11,15], target:9}, output: [0,1] }] },
+    { id: 8, text: "Check if a number is a prime number.", difficulty: 'Medium', points: 75,
+      examples: [{ input: 7, output: true }, { input: 9, output: false }] },
+    { id: 9, text: "Print numbers 1 to n with FizzBuzz rules.", difficulty: 'Easy', points: 50,
+      examples: [{ input: 5, output: ["1","2","Fizz","4","Buzz"] }] },
+    { id: 10, text: "Merge two sorted arrays into a single sorted array.", difficulty: 'Hard', points: 100,
+      examples: [{ input: [[1,3,5],[2,4,6]], output: [1,2,3,4,5,6] }] },
+    { id: 11, text: "Check if a string is a palindrome.", difficulty: 'Easy', points: 50,
+      examples: [{ input: "madam", output: true }, { input: "hello", output: false }] },
+    { id: 12, text: "Remove duplicate elements from an array.", difficulty: 'Medium', points: 75,
+      examples: [{ input: [1,1,2,3,3], output: [1,2,3] }] },
+    { id: 13, text: "Find the largest number in an array.", difficulty: 'Easy', points: 50,
+      examples: [{ input: [1,5,3], output: 5 }] },
+    { id: 14, text: "Calculate factorial of a number using recursion.", difficulty: 'Medium', points: 75,
+      examples: [{ input: 5, output: 120 }] },
+    { id: 15, text: "Count vowels in a string.", difficulty: 'Easy', points: 50,
+      examples: [{ input: "hello", output: 2 }] },
+    { id: 16, text: "Find the second largest number in an array.", difficulty: 'Medium', points: 75,
+      examples: [{ input: [10,20,4,20,15], output: 15 }] },
+    { id: 17, text: "Convert a Roman numeral to an integer.", difficulty: 'Medium', points: 75,
+      examples: [{ input: "IX", output: 9 }, { input: "LVIII", output: 58 }] },
+    { id: 18, text: "Check if a number is even.", difficulty: 'Easy', points: 50,
+      examples: [{ input: 4, output: true }, { input: 7, output: false }] },
+    { id: 19, text: "Sum of digits of a number.", difficulty: 'Easy', points: 50,
+      examples: [{ input: 123, output: 6 }] },
+    { id: 20, text: "Convert lowercase letters in a string to uppercase.", difficulty: 'Easy', points: 50,
+      examples: [{ input: "abcXYZ", output: "ABCXYZ" }] }
 ];
+
 
 
     const colors = [ '#581c87', '#6b21a8', '#7e22ce', '#9333ea', '#a855f7', '#312e81', '#3730a3', '#4338ca', '#4f46e5', '#6366f1', '#1e3a8a', '#1e40af', '#1d4ed8', '#2563eb', '#3b82f6', '#581c87', '#7e22ce', ' #3730a3', '#4f46e5', '#1e40af' ];
@@ -414,6 +437,20 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.questionNumber.textContent = `Question ${question.id}`;
         elements.questionText.textContent = question.text;
         elements.questionPoints.textContent = `Points: ${question.points}`;
+        // Render examples (input → expected output) if provided
+        const examplesEl = document.getElementById('question-examples');
+        if (question.examples && question.examples.length) {
+            let html = '<div class="w-full text-left mt-1"><p class="font-semibold text-sm text-purple-300 mb-2">Examples:</p>';
+            question.examples.forEach((ex, idx) => {
+                html += `<pre class="text-sm p-2 rounded-md max-w-full overflow-auto" style="background:rgba(15,12,30,0.6);border:1px solid rgba(99,102,241,0.08);">Input: ${JSON.stringify(ex.input)} → Output: ${JSON.stringify(ex.output)}</pre>`;
+            });
+            html += '</div>';
+            examplesEl.innerHTML = html;
+            examplesEl.classList.remove('hidden');
+        } else {
+            examplesEl.classList.add('hidden');
+            examplesEl.innerHTML = '';
+        }
         
         // FIX: Use new CSS classes for badges instead of undefined Tailwind classes
         const difficultyConfig = {
@@ -453,6 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         elements.questionDisplay.classList.add('hidden');
+        const examplesEl = document.getElementById('question-examples'); if (examplesEl) { examplesEl.classList.add('hidden'); examplesEl.innerHTML = ''; }
         elements.submitButton.classList.add('hidden');
         if (state.availableOptions.length > 0) {
              elements.preSpinMessage.classList.remove('hidden');
@@ -557,5 +595,3 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-
-
