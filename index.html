@@ -77,6 +77,17 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
         .pixel-button.green:active {
             box-shadow: inset -2px -2px 0px 0px #15803d, 0px 0px 5px 0px #4ade80;
         }
+        .pixel-button.red {
+            background-color: #dc2626; /* red-600 */
+            box-shadow: inset -4px -4px 0px 0px #b91c1c, 0px 0px 15px 0px #f87171;
+        }
+        .pixel-button.red:hover {
+            background-color: #b91c1c; /* red-700 */
+            box-shadow: inset -4px -4px 0px 0px #b91c1c, 0px 0px 25px 0px #f87171;
+        }
+        .pixel-button.red:active {
+            box-shadow: inset -2px -2px 0px 0px #b91c1c, 0px 0px 5px 0px #f87171;
+        }
 
         .wheel-pointer {
             position: absolute;
@@ -160,6 +171,10 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
+        
+        .cooldown-glow {
+            text-shadow: 0 0 5px var(--warning-color), 0 0 10px var(--warning-color), 0 0 15px var(--warning-color);
+        }
     </style>
 <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.left-0{left:0px}.top-0{top:0px}.z-20{z-index:20}.mx-auto{margin-left:auto;margin-right:auto}.my-4{margin-top:1rem;margin-bottom:1rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-20{margin-top:5rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-12{height:3rem}.h-14{height:3.5rem}.h-full{height:100%}.max-h-32{max-height:8rem}.min-h-screen{min-height:100vh}.min-h-\[200px\]{min-height:200px}.w-auto{width:auto}.w-full{width:100%}.max-w-4xl{max-width:56rem}.max-w-6xl{max-width:72rem}.max-w-sm{max-width:24rem}.flex-grow{flex-grow:1}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-y-auto{overflow-y:auto}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.border{border-width:1px}.border-green-500{--tw-border-opacity:1;border-color:rgb(34 197 94 / var(--tw-border-opacity, 1))}.border-red-500{--tw-border-opacity:1;border-color:rgb(239 68 68 / var(--tw-border-opacity, 1))}.bg-green-900\/50{background-color:rgb(20 83 45 / 0.5)}.bg-red-900\/50{background-color:rgb(127 29 29 / 0.5)}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-indigo-400{--tw-gradient-from:#818cf8 var(--tw-gradient-from-position);--tw-gradient-to:rgb(129 140 248 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-pink-400{--tw-gradient-from:#f472b6 var(--tw-gradient-from-position);--tw-gradient-to:rgb(244 114 182 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-purple-500{--tw-gradient-to:#a855f7 var(--tw-gradient-to-position)}.via-purple-400{--tw-gradient-to:rgb(192 132 252 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #c084fc var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-cyan-400{--tw-gradient-to:#22d3ee var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.p-4{padding:1rem}.p-1{padding:0.25rem}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.text-2xl{font-size:1.5rem;line-height:2rem}.text-5xl{font-size:3rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.italic{font-style:italic}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-purple-300{color:var(--text-muted-color)}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.drop-shadow-lg{--tw-drop-shadow:0 10px 8px rgb(0 0 0 / 0.04), 0 4px 3px rgb(0 0 0 / 0.1);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}@media (min-width: 640px){.sm\:h-14{height:3.5rem}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:p-6{padding:1.5rem}}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style></head>
 <body class="flex items-center justify-center min-h-screen p-4 relative">
@@ -235,6 +250,9 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                         <p class="text-xl text-center mb-4" id="question-text" style="color: var(--text-color);">This is the question.</p>
                         <p class="font-bold" id="question-points" style="color: var(--accent-color);">Points: Y</p>
                         <div id="question-examples" class="hidden w-full text-left mt-3"></div>
+                        <div class="w-full text-center mt-3">
+                            <p class="text-sm text-purple-300">Press <kbd>Enter</kbd> to complete • Press <kbd>S</kbd> to skip</p>
+                        </div>
                     </div>
 
                     <div id="completion-message" class="hidden w-full bg-green-900/50 border border-green-500 px-4 py-3 rounded-lg text-center" role="alert" style="color:var(--success-color)">
@@ -246,10 +264,14 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                         <span class="block sm:inline" id="final-score-text">You solved X questions.</span>
                     </div>
                      <p id="pre-spin-message" class="text-purple-300 text-lg">Click the center or press <kbd>Space</kbd> to spin!</p>
+                     <p id="cooldown-message" class="hidden text-yellow-400 text-lg pulse cooldown-glow">Cooldown: <span id="cooldown-timer">1:09</span> remaining</p>
                 </div>
-                <div id="button-container" class="text-center h-14">
+                <div id="button-container" class="text-center h-14 flex gap-4 items-center justify-center">
                     <button id="submit-button" class="hidden pixel-button green">
                         MARK AS COMPLETE
+                    </button>
+                    <button id="skip-button" class="hidden pixel-button red">
+                        SKIP QUESTION
                     </button>
                 </div>
                 <div id="completed-questions-container" class="hidden w-full p-4 rounded-lg glow-container">
@@ -266,6 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const elements = {
         canvas: document.getElementById('wheelCanvas'),
         submitButton: document.getElementById('submit-button'),
+        skipButton: document.getElementById('skip-button'),
         questionDisplay: document.getElementById('question-display'),
         questionNumber: document.getElementById('question-number'),
         questionText: document.getElementById('question-text'),
@@ -283,6 +306,8 @@ document.addEventListener('DOMContentLoaded', () => {
         preSpinMessage: document.getElementById('pre-spin-message'),
         completedQuestionsContainer: document.getElementById('completed-questions-container'),
         completedQuestionsList: document.getElementById('completed-questions-list'),
+        cooldownMessage: document.getElementById('cooldown-message'),
+        cooldownTimer: document.getElementById('cooldown-timer'),
     };
 
     const ctx = elements.canvas.getContext('2d');
@@ -421,9 +446,12 @@ const questions = [
         isSpinning: false,
         lastWinner: null,
         timerInterval: null,
-        timeLeft: 15 * 60,
+        timeLeft: 25 * 60,
         totalScore: 0,
         questionsSolved: 0,
+        cooldownActive: false,
+        cooldownTimeLeft: 0,
+        cooldownInterval: null,
     };
 
     const drawWheel = () => {
@@ -460,9 +488,10 @@ const questions = [
     };
 
     const spin = async () => {
-        if (state.isSpinning || state.availableOptions.length === 0) return;
+        if (state.isSpinning || state.availableOptions.length === 0 || state.cooldownActive) return;
         state.isSpinning = true;
         elements.preSpinMessage.classList.add('hidden');
+        elements.cooldownMessage.classList.add('hidden');
         
         const spinAngle = Math.random() * (Math.PI * 12) + (Math.PI * 8);
         const spinDuration = 2000;
@@ -545,6 +574,7 @@ const questions = [
         elements.questionDisplay.classList.remove('hidden');
         elements.questionDisplay.classList.add('fade-in');
         elements.submitButton.classList.remove('hidden');
+        elements.skipButton.classList.remove('hidden');
         elements.preSpinMessage.classList.add('hidden');
         
         // IMPROVEMENT: Set focus on the submit button for better accessibility
@@ -571,13 +601,49 @@ const questions = [
         elements.questionDisplay.classList.add('hidden');
         const examplesEl = document.getElementById('question-examples'); if (examplesEl) { examplesEl.classList.add('hidden'); examplesEl.innerHTML = ''; }
         elements.submitButton.classList.add('hidden');
+        elements.skipButton.classList.add('hidden');
         if (state.availableOptions.length > 0) {
-             elements.preSpinMessage.classList.remove('hidden');
+            if (!state.cooldownActive) {
+                elements.preSpinMessage.classList.remove('hidden');
+                elements.cooldownMessage.classList.add('hidden');
+            }
         } else {
             elements.completionMessage.classList.remove('hidden');
             elements.completionMessage.classList.add('fade-in');
         }
         state.isSpinning = false;
+    };
+
+    const startCooldown = () => {
+        state.cooldownActive = true;
+        state.cooldownTimeLeft = 65; // 1.15 minutes = 65 seconds
+        
+        elements.preSpinMessage.classList.add('hidden');
+        elements.cooldownMessage.classList.remove('hidden');
+        
+        const updateCooldownDisplay = () => {
+            const minutes = Math.floor(state.cooldownTimeLeft / 60);
+            const seconds = state.cooldownTimeLeft % 60;
+            elements.cooldownTimer.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        };
+        
+        updateCooldownDisplay();
+        
+        state.cooldownInterval = setInterval(() => {
+            state.cooldownTimeLeft--;
+            updateCooldownDisplay();
+            
+            if (state.cooldownTimeLeft <= 0) {
+                clearInterval(state.cooldownInterval);
+                state.cooldownActive = false;
+                elements.cooldownMessage.classList.add('hidden');
+                
+                // Only show spin message if there are still questions available
+                if (state.availableOptions.length > 0) {
+                    elements.preSpinMessage.classList.remove('hidden');
+                }
+            }
+        }, 1000);
     };
 
     elements.startChallengeButton.addEventListener('click', async () => {
@@ -609,6 +675,10 @@ const questions = [
 
                 if (state.timeLeft <= 0) {
                     clearInterval(state.timerInterval);
+                    if (state.cooldownInterval) {
+                        clearInterval(state.cooldownInterval);
+                        state.cooldownActive = false;
+                    }
                     elements.timerDisplay.classList.remove('pulse'); // Stop pulsing when time is up
                     elements.timesUpMessage.classList.remove('hidden');
                     elements.timesUpMessage.classList.add('fade-in');
@@ -630,22 +700,47 @@ const questions = [
                 state.lastWinner = null;
                 drawWheel();
                 updateUI();
-                if(state.availableOptions.length === 0) {
+                
+                // Start cooldown after completing a question
+                if(state.availableOptions.length > 0) {
+                    startCooldown();
+                } else {
                     clearInterval(state.timerInterval);
                 }
             }
         }
     });
 
+    elements.skipButton.addEventListener('click', () => {
+        if (state.lastWinner !== null) {
+            // Remove the question from available options without adding points
+            state.availableOptions = state.availableOptions.filter(opt => opt !== state.lastWinner);
+            state.lastWinner = null;
+            drawWheel();
+            updateUI();
+            
+            // Start cooldown after skipping a question
+            if(state.availableOptions.length > 0) {
+                startCooldown();
+            } else {
+                clearInterval(state.timerInterval);
+            }
+        }
+    });
+
     document.addEventListener('keydown', (e) => {
         if(elements.gameScreen.classList.contains('hidden')) return;
-        if (e.code === 'Space' && !state.isSpinning && elements.submitButton.classList.contains('hidden')) {
+        if (e.code === 'Space' && !state.isSpinning && !state.cooldownActive && elements.submitButton.classList.contains('hidden')) {
             e.preventDefault();
             spin();
         }
         if (e.code === 'Enter' && !elements.submitButton.classList.contains('hidden')) {
             e.preventDefault();
             elements.submitButton.click();
+        }
+        if (e.code === 'KeyS' && !elements.skipButton.classList.contains('hidden')) {
+            e.preventDefault();
+            elements.skipButton.click();
         }
     });
     
@@ -656,7 +751,7 @@ const questions = [
         const x = (event.clientX - rect.left) * scaleX;
         const y = (event.clientY - rect.top) * scaleY;
         const distance = Math.sqrt(Math.pow(x - 300, 2) + Math.pow(y - 300, 2));
-        if (distance <= 60) spin();
+        if (distance <= 60 && !state.cooldownActive) spin();
     });
 
     elements.canvas.addEventListener('mousemove', (event) => {
@@ -666,7 +761,7 @@ const questions = [
         const x = (event.clientX - rect.left) * scaleX;
         const y = (event.clientY - rect.top) * scaleY;
         const distance = Math.sqrt(Math.pow(x - 300, 2) + Math.pow(y - 300, 2));
-        elements.canvas.style.cursor = (distance <= 60 && !state.isSpinning && state.availableOptions.length > 0) ? 'pointer' : 'default';
+        elements.canvas.style.cursor = (distance <= 60 && !state.isSpinning && !state.cooldownActive && state.availableOptions.length > 0) ? 'pointer' : 'default';
     });
 
     drawWheel();
