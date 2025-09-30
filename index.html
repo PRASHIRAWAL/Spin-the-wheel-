@@ -289,48 +289,127 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 const questions = [
-    { id: 1, text: "Check if a string of brackets '()[]{}' is balanced.", difficulty: 'Hard', points: 100,
-      examples: [{ input: "()[]{}", output: true }, { input: "(]", output: false }] },
-    { id: 2, text: "Reverse a given string.", difficulty: 'Easy', points: 50,
-      examples: [{ input: "hello", output: "olleh" }] },
-    { id: 3, text: "Find the missing number in an integer array from 1 to 10.", difficulty: 'Medium', points: 75,
-      examples: [{ input: [1,2,3,5,6,7,8,9,10], output: 4 }] },
-    { id: 4, text: "Swap two variables without a temporary variable.", difficulty: 'Easy', points: 50,
-      examples: [{ input: {a:5, b:7}, output: {a:7, b:5} }] },
-    { id: 5, text: "Count the frequency of each word in a string.", difficulty: 'Medium', points: 75,
-      examples: [{ input: "cat dog cat", output: {cat:2, dog:1} }] },
-    { id: 6, text: "Move all zeros in an array to the end.", difficulty: 'Easy', points: 50,
-      examples: [{ input: [0,1,0,3,12], output: [1,3,12,0,0] }] },
-    { id: 7, text: "Implement `twoSum(arr, target)` to find two numbers in an array that sum to a target.", difficulty: 'Hard', points: 100,
-      examples: [{ input: {arr:[2,7,11,15], target:9}, output: [0,1] }] },
-    { id: 8, text: "Check if a number is a prime number.", difficulty: 'Medium', points: 75,
-      examples: [{ input: 7, output: true }, { input: 9, output: false }] },
-    { id: 9, text: "Print numbers 1 to n with FizzBuzz rules('Fizz' is divisible by 3, 'Buzz' if divisible by 5 and 'FizzBuzz' if divisible by 3 and 5).", difficulty: 'Easy', points: 50,
-      examples: [{ input: 5, output: ["1","2","Fizz","4","Buzz"] }] },
-    { id: 10, text: "Merge two sorted arrays into a single sorted array.", difficulty: 'Hard', points: 100,
-      examples: [{ input: [[1,3,5],[2,4,6]], output: [1,2,3,4,5,6] }] },
-    { id: 11, text: "Check if a string is a palindrome.", difficulty: 'Easy', points: 50,
-      examples: [{ input: "madam", output: true }, { input: "hello", output: false }] },
-    { id: 12, text: "Remove duplicate elements from an array.", difficulty: 'Medium', points: 75,
-      examples: [{ input: [1,1,2,3,3], output: [1,2,3] }] },
-    { id: 13, text: "Find the largest number in an array.", difficulty: 'Easy', points: 50,
-      examples: [{ input: [1,5,3], output: 5 }] },
-    { id: 14, text: "Calculate factorial of a number using recursion.", difficulty: 'Medium', points: 75,
-      examples: [{ input: 5, output: 120 }] },
-    { id: 15, text: "Count the number of vowels in a string.", difficulty: 'Easy', points: 50,
-      examples: [{ input: "hello", output: 2 }] },
-    { id: 16, text: "Find the second largest number in an array.", difficulty: 'Medium', points: 75,
-      examples: [{ input: [10,20,4,20,15], output: 15 }] },
-    { id: 17, text: "Convert a Roman numeral to an integer.", difficulty: 'Medium', points: 75,
-      examples: [{ input: "IX", output: 9 }, { input: "LVIII", output: 58 }] },
-    { id: 18, text: "Check if a number is even.", difficulty: 'Easy', points: 50,
-      examples: [{ input: 4, output: true }, { input: 7, output: false }] },
-    { id: 19, text: "Sum of digits of a number.", difficulty: 'Easy', points: 50,
-      examples: [{ input: 123, output: 6 }] },
-    { id: 20, text: "Convert lowercase letters in a string to uppercase.", difficulty: 'Easy', points: 50,
-      examples: [{ input: "abcXYZ", output: "ABCXYZ" }] }
+  { id: 1, text: "Check if a string of brackets '()[]{}' is balanced.", difficulty: 'Hard', points: 100,
+    examples: [
+      { input: "()[]{}", output: true },
+      { input: "(]", output: false },
+      { input: "({[]})", output: true }
+    ] },
+  { id: 2, text: "Reverse a given string.", difficulty: 'Easy', points: 50,
+    examples: [
+      { input: "hello", output: "olleh" },
+      { input: "world", output: "dlrow" },
+      { input: "abc", output: "cba" }
+    ] },
+  { id: 3, text: "Find the missing number in an integer array from 1 to 10.", difficulty: 'Medium', points: 75,
+    examples: [
+      { input: [1,2,3,5,6,7,8,9,10], output: 4 },
+      { input: [2,3,4,5,6,7,8,9,10], output: 1 },
+      { input: [1,2,3,4,5,6,8,9,10], output: 7 }
+    ] },
+  { id: 4, text: "Swap two variables without a temporary variable.", difficulty: 'Easy', points: 50,
+    examples: [
+      { input: {a:5, b:7}, output: {a:7, b:5} },
+      { input: {a:10, b:20}, output: {a:20, b:10} },
+      { input: {a:-1, b:3}, output: {a:3, b:-1} }
+    ] },
+  { id: 5, text: "Count the frequency of each word in a string.", difficulty: 'Medium', points: 75,
+    examples: [
+      { input: "cat dog cat", output: {cat:2, dog:1} },
+      { input: "apple banana apple orange", output: {apple:2, banana:1, orange:1} },
+      { input: "one one one two", output: {one:3, two:1} }
+    ] },
+  { id: 6, text: "Move all zeros in an array to the end.", difficulty: 'Easy', points: 50,
+    examples: [
+      { input: [0,1,0,3,12], output: [1,3,12,0,0] },
+      { input: [1,0,2,0,0,3], output: [1,2,3,0,0,0] },
+      { input: [0,0,0], output: [0,0,0] }
+    ] },
+  { id: 7, text: "Implement `twoSum(arr, target)` to find two numbers in an array that sum to a target.", difficulty: 'Hard', points: 100,
+    examples: [
+      { input: {arr:[2,7,11,15], target:9}, output: [0,1] },
+      { input: {arr:[3,2,4], target:6}, output: [1,2] },
+      { input: {arr:[1,5,3,7], target:8}, output: [0,3] }
+    ] },
+  { id: 8, text: "Check if a number is a prime number.", difficulty: 'Medium', points: 75,
+    examples: [
+      { input: 7, output: true },
+      { input: 9, output: false },
+      { input: 13, output: true }
+    ] },
+  { id: 9, text: "Print numbers 1 to n with FizzBuzz rules.", difficulty: 'Easy', points: 50,
+    examples: [
+      { input: 5, output: ["1","2","Fizz","4","Buzz"] },
+      { input: 3, output: ["1","2","Fizz"] },
+      { input: 15, output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"] }
+    ] },
+  { id: 10, text: "Merge two sorted arrays into a single sorted array.", difficulty: 'Hard', points: 100,
+    examples: [
+      { input: [[1,3,5],[2,4,6]], output: [1,2,3,4,5,6] },
+      { input: [[1,2,3],[4,5,6]], output: [1,2,3,4,5,6] },
+      { input: [[1,4,7],[2,3,6]], output: [1,2,3,4,6,7] }
+    ] },
+  { id: 11, text: "Check if a string is a palindrome.", difficulty: 'Easy', points: 50,
+    examples: [
+      { input: "madam", output: true },
+      { input: "hello", output: false },
+      { input: "racecar", output: true }
+    ] },
+  { id: 12, text: "Remove duplicate elements from an array.", difficulty: 'Medium', points: 75,
+    examples: [
+      { input: [1,1,2,3,3], output: [1,2,3] },
+      { input: [4,4,4,4], output: [4] },
+      { input: [1,2,3,2,1], output: [1,2,3] }
+    ] },
+  { id: 13, text: "Find the largest number in an array.", difficulty: 'Easy', points: 50,
+    examples: [
+      { input: [1,5,3], output: 5 },
+      { input: [10,20,15], output: 20 },
+      { input: [-1,-5,-3], output: -1 }
+    ] },
+  { id: 14, text: "Calculate factorial of a number using recursion.", difficulty: 'Medium', points: 75,
+    examples: [
+      { input: 5, output: 120 },
+      { input: 3, output: 6 },
+      { input: 0, output: 1 }
+    ] },
+  { id: 15, text: "Count the number of vowels in a string.", difficulty: 'Easy', points: 50,
+    examples: [
+      { input: "hello", output: 2 },
+      { input: "world", output: 1 },
+      { input: "aeiou", output: 5 }
+    ] },
+  { id: 16, text: "Find the second largest number in an array.", difficulty: 'Medium', points: 75,
+    examples: [
+      { input: [10,20,4,20,15], output: 15 },
+      { input: [1,2,3,4], output: 3 },
+      { input: [5,5,5,4], output: 4 }
+    ] },
+  { id: 17, text: "Convert a Roman numeral to an integer.", difficulty: 'Medium', points: 75,
+    examples: [
+      { input: "IX", output: 9 },
+      { input: "LVIII", output: 58 },
+      { input: "MCMXCIV", output: 1994 }
+    ] },
+  { id: 18, text: "Check if a number is even.", difficulty: 'Easy', points: 50,
+    examples: [
+      { input: 4, output: true },
+      { input: 7, output: false },
+      { input: 0, output: true }
+    ] },
+  { id: 19, text: "Sum of digits of a number.", difficulty: 'Easy', points: 50,
+    examples: [
+      { input: 123, output: 6 },
+      { input: 987, output: 24 },
+      { input: 1001, output: 2 }
+    ] },
+  { id: 20, text: "Convert lowercase letters in a string to uppercase.", difficulty: 'Easy', points: 50,
+    examples: [
+      { input: "abcXYZ", output: "ABCXYZ" },
+      { input: "hello", output: "HELLO" },
+      { input: "JavaScript", output: "JAVASCRIPT" }
+    ] }
 ];
-
 
 
     const colors = [ '#581c87', '#6b21a8', '#7e22ce', '#9333ea', '#a855f7', '#312e81', '#3730a3', '#4338ca', '#4f46e5', '#6366f1', '#1e3a8a', '#1e40af', '#1d4ed8', '#2563eb', '#3b82f6', '#581c87', '#7e22ce', ' #3730a3', '#4f46e5', '#1e40af' ];
@@ -595,5 +674,6 @@ const questions = [
 </script>
 </body>
 </html>
+
 
 
